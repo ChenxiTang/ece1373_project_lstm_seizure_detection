@@ -4,7 +4,7 @@
 #Set up project details and create a block design                   #
 #####################################################################
 
-create_project prj_design1 vivado_designs/ -part xcvu095-ffvc1517-2-e -force 
+create_project prj_design1 vivado_designs/new -part xcvu095-ffvc1517-2-e -force 
 
 set_property  ip_repo_paths  {IP_REPO/ocl_ips\
 hls_proj/ph_proj/solution1/impl/ip \
@@ -25,16 +25,17 @@ support/pcie_constr.xdc}
 
 update_ip_catalog
 
-source TCL/system_mbz.tcl
+source TCL/mem_fpga_fir_dummies.tcl
 
+start_gui
 validate_bd_design 
 
-make_wrapper -files [get_files vivado_designs/prj_design1.srcs/sources_1/bd/system/system.bd] -top
+#make_wrapper -files [get_files vivado_designs/prj_design1.srcs/sources_1/bd/system/system.bd] -top
 
-add_files -norecurse vivado_designs/prj_design1.srcs/sources_1/bd/system/hdl/system_wrapper.v
+#add_files -norecurse vivado_designs/prj_design1.srcs/sources_1/bd/system/hdl/system_wrapper.v
 
-update_compile_order -fileset sources_1
-reset_run synth_1
-launch_runs synth_1 -jobs 12
-start_gui
+#update_compile_order -fileset sources_1
+#reset_run synth_1
+#launch_runs synth_1 -jobs 12
+
 
