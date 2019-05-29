@@ -2,11 +2,11 @@
 #include <float.h>
 #include "matrix_vector.h"
 
+// matrix-vector multiplication with input vector (110 x 1 vector)
 void mv_input(float * mem,            // global memory pointer
                 int input_offset,       // offset of inputs
                 int output_offset      // offset of outputs
 ){
-// matrix-vector multiplication with input vector (110 x 1 vector)
 // Global memory interface
 #pragma HLS INTERFACE m_axi port=mem depth=2147483648
 // Bind all control ports to a single bundle
