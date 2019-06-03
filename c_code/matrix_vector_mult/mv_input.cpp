@@ -10,14 +10,9 @@ void mv_input(float * mem,            // global memory pointer
 // Global memory interface
 #pragma HLS INTERFACE m_axi port=mem depth=2147483648
 // Bind all control ports to a single bundle
-<<<<<<< HEAD
 //#pragma HLS INTERFACE s_axilite port=k bundle=CTRL_BUS
 #pragma HLS INTERFACE s_axilite port=input_offset bundle=CTRL_BUS
 #pragma HLS INTERFACE s_axilite port=output_offset bundle=CTRL_BUS
-=======
-#pragma HLS INTERFACE s_axilite port=input_offset
-#pragma HLS INTERFACE s_axilite port=output_offset
->>>>>>> 45ffb5dd967a00af526b989d96bcb11aa05ec323
 #pragma HLS INTERFACE s_axilite port=return bundle=CTRL_BUS
  
   int num_weights = 64*110;
