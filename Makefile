@@ -20,7 +20,7 @@ mv_output_hls:
 	vivado_hls hls_proj/mv_output_hls.tcl
 
 mv_state_hls:
-	vivadp_hls hls_proj/mv_state_hls.tcl
+	vivado_hls hls_proj/mv_state_hls.tcl
 
 prj: all_hls
 	vivado -mode batch -source TCL/top.tcl

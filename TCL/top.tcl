@@ -44,6 +44,7 @@ add_files -norecurse ./vivado_designs/new/prj_design1.srcs/sources_1/bd/design_1
 
 update_compile_order -fileset sources_1
 
-start_gui
 
 launch_runs impl_1 -to_step write_bitstream -jobs 24
+
+start_gui
