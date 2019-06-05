@@ -3,8 +3,9 @@
 #include "matrix_vector.h"
 
 // matrix-vector multiplication with input vector (110 x 1 vector)
-void mv_input(float * mem,            // global memory pointer
-                int input_offset,       // offset of inputs
+void mv_input(dataType * mem,            // global memory pointer
+                int input1_offset,       // offset of input A
+				int input2_offset,       // offset of input B
                 int output_offset      // offset of outputs
 ){
 // Global memory interface
@@ -15,21 +16,20 @@ void mv_input(float * mem,            // global memory pointer
 #pragma HLS INTERFACE s_axilite port=output_offset bundle=CTRL_BUS
 #pragma HLS INTERFACE s_axilite port=return bundle=CTRL_BUS
  
-  int num_weights = 64*110;
-  int num_biases = 64;
+
   //int num_input = b*id*ix*iy;
   //int num_output = b*od*ox*oy;
 
   // rows
   for (int row=0; row<64; row++){
     // Set bias
-    float output_element = mem[input_offset/sizeof(float) + num_weights + row];
+    float output_element = 0;
     // Columns
     for (int col = 0; col < 110; col++){
-     output_element += mem[input_offset/sizeof(float) + row*110 + col]*mem[input_offset/sizeof(float) + num_weights + num_biases + col];
+     output_element += mem[input1_offset/sizeof(dataType) + row*110 + col]*mem[input2_offset/sizeof(dataType) + col];
      }
      // Write output
-    mem[output_offset/sizeof(float) + row] = output_element;
+    mem[output_offset/sizeof(dataType) + row] = output_element;
   }
 }
 

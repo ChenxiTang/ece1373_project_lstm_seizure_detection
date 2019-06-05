@@ -7,15 +7,19 @@
 #include "ap_int.h"
 #include "ap_fixed.h"
 
-void ElemWiseTanh(const dataType in[len], dataType out[len]){
+void ElemWiseTanh(dataType * mem,            // global memory pointer
+		int input_offset,       // offset of inputs
+        int output_offset,      // offset of outputs
+		int len					// length of data
+		){
 	for(int i = 0; i < len; i++){
 		//out[i] = tanh(in[i]);
 		//Htanh
-		if(in[i] < -1)
-			out[i] = -1;
-		else if(in[i] > 1)
-			out[i] = 1;
-		else out[i] = in[i];
+		if(mem[input_offset/sizeof(dataType)+i] < -1)
+			mem[output_offset/sizeof(dataType)+i] = -1;
+		else if(mem[input_offset/sizeof(dataType)+i] > 1)
+			mem[output_offset/sizeof(dataType)+i] = 1;
+		else mem[output_offset/sizeof(dataType)+i] = mem[input_offset/sizeof(dataType)+i];
 
 
 		//Ptanh

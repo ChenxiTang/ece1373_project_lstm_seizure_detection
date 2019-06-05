@@ -7,16 +7,20 @@
 #include "ap_int.h"
 #include "ap_fixed.h"
 
-void ElemWiseSigmoid(const dataType in[len], dataType out[len]){
-	for(int i = 0; i < len; i++){
-		//out[i] = in[i]/(1+abs(in[i]));
+void ElemWiseSigmoid(dataType * mem,            // global memory pointer
+		int input_offset,       // offset of inputs
+        int output_offset,      // offset of outputs
+		int len					// length of data
+		){
+			for(int i = 0; i < len; i++){
+				//out[i] = in[i]/(1+abs(in[i]));
 
-		//Hsigm
-		if(in[i] > 4)
-			out[i] = 1;
-		else if(in[i] <= -4)
-			out[i] = 0;
-		else
-			out[i] = 0.25*in[i] + 0.5;
+				//Hsigm
+				if(mem[i+input_offset/sizeof(dataType)] > 4)
+					mem[i+output_offset/sizeof(dataType)] = 1;
+				else if(mem[i+input_offset/sizeof(dataType)] <= -4)
+					mem[i+output_offset/sizeof(dataType)] = 0;
+				else
+					mem[i+output_offset/sizeof(dataType)] = 0.25*mem[i+input_offset/sizeof(dataType)] + 0.5;
 	}
 }

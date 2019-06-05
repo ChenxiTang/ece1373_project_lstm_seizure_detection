@@ -7,8 +7,12 @@
 #include "ap_int.h"
 #include "ap_fixed.h"
 
-void ElemWiseVecMul(const dataType in1[len], const dataType in2[len], dataType out[len]){
+void ElemWiseVecMul(dataType * mem,            // global memory pointer
+		int input1_offset,       // offset of inputs A
+		int input2_offset,       // offset of inputs B
+        int output_offset,      // offset of outputs
+		int len){
 	for(int i = 0; i < len; i++){
-		out[i] = in1[i] * in2[i];
+		mem[output_offset/sizeof(dataType)+i] = mem[input1_offset/sizeof(dataType)+i] * mem[input2_offset/sizeof(dataType)+i];
 	}
 }
