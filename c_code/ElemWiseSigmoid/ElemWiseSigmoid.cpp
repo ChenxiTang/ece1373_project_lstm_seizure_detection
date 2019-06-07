@@ -7,27 +7,27 @@
 #include "ap_int.h"
 #include "ap_fixed.h"
 
-void ElemWiseSigmoid(dataType * mem,            // global memory pointer
-		int input_offset,       // offset of inputs
-        int output_offset      // offset of outputs
+void ElemWiseSigmoid(
+		dataType inputs[],       // offset of inputs
+        dataType outputs[]      // offset of outputs
 		){
-
+/*
 	// Global memory interface
 	#pragma HLS INTERFACE m_axi port=mem depth=2147483648
 	// Bind all control ports to a single bundle
 	#pragma HLS INTERFACE s_axilite port=input_offset
 	#pragma HLS INTERFACE s_axilite port=output_offset
 	#pragma HLS INTERFACE s_axilite port=return bundle=CTRL_BUS
-
+*/
 			for(int i = 0; i < 64; i++){
 				//out[i] = in[i]/(1+abs(in[i]));
 
 				//Hsigm
-				if(mem[i+input_offset/sizeof(dataType)] > 4)
-					mem[i+output_offset/sizeof(dataType)] = 1;
-				else if(mem[i+input_offset/sizeof(dataType)] <= -4)
-					mem[i+output_offset/sizeof(dataType)] = 0;
+				if(inputs[i] > 4)
+					outputs[i] = 1;
+				else if(inputs[i] <= -4)
+					outputs[i] = 0;
 				else
-					mem[i+output_offset/sizeof(dataType)] = 0.25*mem[i+input_offset/sizeof(dataType)] + 0.5;
+					outputs[i] = 0.25*inputs[i] + 0.5;
 	}
 }
