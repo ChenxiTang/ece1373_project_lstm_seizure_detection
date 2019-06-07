@@ -102,4 +102,8 @@ void lstm(dataType * mem,            // global memory pointer
 
     //calculating output
     mv_output(mem, h_t_offset, bias_output_offset, output_offset);
+
+    C_tmin1_offset = C_t_offset;
+    h_tmin1_offset = h_t_offset;
+
 }
