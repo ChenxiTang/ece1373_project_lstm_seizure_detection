@@ -23,4 +23,4 @@ mv_state_hls:
 	vivado_hls hls_proj/mv_state_hls.tcl
 
 prj: all_hls
-	vivado -mode batch -source TCL/top.tcl
+	vivado -mode batch -source TCL/build.tcl
