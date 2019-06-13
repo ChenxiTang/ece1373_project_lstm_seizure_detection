@@ -21,6 +21,7 @@ void ElemWiseTanh(
 */
 
 	for(int i = 0; i < 64; i++){
+#pragma HLS UNROLL
 		//out[i] = tanh(in[i]);
 		//Htanh
 		if(inputs[i] < -1)

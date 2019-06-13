@@ -23,10 +23,12 @@ void mv_input(
 
   // rows
   for (int row=0; row<64; row++){
+#pragma HLS UNROLL
     // Set bias
     float output_element = 0;
     // Columns
     for (int col = 0; col < 110; col++){
+#pragma HLS UNROLL
      output_element += input1[row*110 + col]*input2[col];
      }
      // Write output

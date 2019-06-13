@@ -20,6 +20,7 @@ void ElemWiseSigmoid(
 	#pragma HLS INTERFACE s_axilite port=return bundle=CTRL_BUS
 */
 			for(int i = 0; i < 64; i++){
+#pragma HLS UNROLL
 				//out[i] = in[i]/(1+abs(in[i]));
 
 				//Hsigm

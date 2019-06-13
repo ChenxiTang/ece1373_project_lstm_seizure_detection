@@ -27,7 +27,7 @@ void lstm(dataType * mem,            // global memory pointer
 	// Bind all control ports to a single bundle
 	#pragma HLS INTERFACE s_axilite port=input_offset
 	#pragma HLS INTERFACE s_axilite port=output_offset
-
+    #pragma HLS INTERFACE s_axilite port=return bundle=CTRL_BUS
 
 	//Weights and biases offset
 	int Wf_h_offset = input_offset + 64*1*sizeof(dataType);
@@ -81,36 +81,55 @@ void lstm(dataType * mem,            // global memory pointer
 
 
 	//local variables
-	dataType inputBRAM[64];
+	dataType inputBRAM[110];
+#pragma HLS ARRAY_PARTITION variable=inputBRAM complete dim=1
 	dataType WhBRAM[64*64];
+#pragma HLS ARRAY_PARTITION variable=WhBRAM complete dim=1
 	dataType WxBRAM[64*110];
+#pragma HLS ARRAY_PARTITION variable=WxBRAM complete dim=1
 	dataType bBRAM[64];
+#pragma HLS ARRAY_PARTITION variable=bBRAM complete dim=1
 
 	dataType h_tmin1[64] = {0};
+#pragma HLS ARRAY_PARTITION variable=h_tmin1 complete dim=1
 	dataType C_tmin1[64] = {0};
+#pragma HLS ARRAY_PARTITION variable=C_tmin1 complete dim=1
 	dataType mul_w_h[64];
+#pragma HLS ARRAY_PARTITION variable=mul_w_h complete dim=1
 	dataType mul_w_x[64];
+#pragma HLS ARRAY_PARTITION variable=mul_w_x complete dim=1
 	dataType sum_wh_wx_b[64];
+#pragma HLS ARRAY_PARTITION variable=sum_wh_wx_b complete dim=1
 	dataType ftBRAM[64];
+#pragma HLS ARRAY_PARTITION variable=ftBRAM complete dim=1
 	dataType itBRAM[64];
+#pragma HLS ARRAY_PARTITION variable=itBRAM complete dim=1
 	dataType CtildaBRAM[64];
+#pragma HLS ARRAY_PARTITION variable=CtildaBRAM complete dim=1
 	dataType OtBRAM[64];
+#pragma HLS ARRAY_PARTITION variable=OtBRAM complete dim=1
 
 	dataType mul_ft_ctmin1[64];
+#pragma HLS ARRAY_PARTITION variable=mul_ft_ctmin1 complete dim=1
 	dataType mul_it_ctilda[64];
+#pragma HLS ARRAY_PARTITION variable=mul_it_ctilda complete dim=1
 	dataType CtBRAM[64];
+#pragma HLS ARRAY_PARTITION variable=CtBRAM complete dim=1
 	dataType tanh_ct[64];
+#pragma HLS ARRAY_PARTITION variable=tanh_ct complete dim=1
 	dataType htBRAM[64];
+#pragma HLS ARRAY_PARTITION variable=htBRAM complete dim=1
 	dataType bias_output[64];
+#pragma HLS ARRAY_PARTITION variable=bias_output complete dim=1
 	dataType outputBRAM;
 
 	//copy the input values to local BRAMs
-	memcpy(inputBRAM, (const dataType*) mem, 64*sizeof(dataType));
+	memcpy(inputBRAM, (const dataType*) (mem+input_offset), 64*sizeof(dataType));
 
 	//cpy data for forget gate
-	memcpy(WhBRAM, (const dataType*)(mem+64), 64*64*sizeof(dataType));
-	memcpy(WxBRAM, (const dataType*)(mem+64+64*64), 64*110*sizeof(dataType));
-	memcpy(bBRAM, (const dataType*)(mem+64+64*64+64*110), 64*1*sizeof(dataType));
+	memcpy(WhBRAM, (const dataType*)(mem+input_offset+64), 64*64*sizeof(dataType));
+	memcpy(WxBRAM, (const dataType*)(mem+input_offset+64+64*64), 64*110*sizeof(dataType));
+	memcpy(bBRAM, (const dataType*)(mem+input_offset+64+64*64+64*110), 64*1*sizeof(dataType));
 
 	//calculating f_t
 	mv_state(WhBRAM, h_tmin1, mul_w_h);
@@ -119,9 +138,9 @@ void lstm(dataType * mem,            // global memory pointer
     ElemWiseSigmoid(sum_wh_wx_b, ftBRAM);
 
 	//cpy data for it gate
-	memcpy(WhBRAM, (const dataType*)(mem+11200+64), 64*64*sizeof(dataType));
-	memcpy(WxBRAM, (const dataType*)(mem+11200+64+64*64), 64*110*sizeof(dataType));
-	memcpy(bBRAM, (const dataType*)(mem+11200+64+64*64+64*110), 64*1*sizeof(dataType));
+	memcpy(WhBRAM, (const dataType*)(mem+input_offset+11200+64), 64*64*sizeof(dataType));
+	memcpy(WxBRAM, (const dataType*)(mem+input_offset+11200+64+64*64), 64*110*sizeof(dataType));
+	memcpy(bBRAM, (const dataType*)(mem+input_offset+11200+64+64*64+64*110), 64*1*sizeof(dataType));
 
 
     //calculating it
@@ -131,9 +150,9 @@ void lstm(dataType * mem,            // global memory pointer
     ElemWiseSigmoid(sum_wh_wx_b, itBRAM);
 
 	//cpy data for Ctilda gate
-	memcpy(WhBRAM, (const dataType*)(mem+22400+64), 64*64*sizeof(dataType));
-	memcpy(WxBRAM, (const dataType*)(mem+22400+64+64*64), 64*110*sizeof(dataType));
-	memcpy(bBRAM, (const dataType*)(mem+22400+64+64*64+64*110), 64*1*sizeof(dataType));
+	memcpy(WhBRAM, (const dataType*)(mem+input_offset+22400+64), 64*64*sizeof(dataType));
+	memcpy(WxBRAM, (const dataType*)(mem+input_offset+22400+64+64*64), 64*110*sizeof(dataType));
+	memcpy(bBRAM, (const dataType*)(mem+input_offset+22400+64+64*64+64*110), 64*1*sizeof(dataType));
 
     //calculating Ctilda
 	mv_state(WhBRAM, h_tmin1, mul_w_h);
@@ -142,9 +161,9 @@ void lstm(dataType * mem,            // global memory pointer
     ElemWiseTanh(sum_wh_wx_b, CtildaBRAM);
 
 	//cpy data for Ctilda gate
-	memcpy(WhBRAM, (const dataType*)(mem+33600+64), 64*64*sizeof(dataType));
-	memcpy(WxBRAM, (const dataType*)(mem+33600+64+64*64), 64*110*sizeof(dataType));
-	memcpy(bBRAM, (const dataType*)(mem+33600+64+64*64+64*110), 64*1*sizeof(dataType));
+	memcpy(WhBRAM, (const dataType*)(mem+input_offset+33600+64), 64*64*sizeof(dataType));
+	memcpy(WxBRAM, (const dataType*)(mem+input_offset+33600+64+64*64), 64*110*sizeof(dataType));
+	memcpy(bBRAM, (const dataType*)(mem+input_offset+33600+64+64*64+64*110), 64*1*sizeof(dataType));
 
     //calculating Ot
 	mv_state(WhBRAM, h_tmin1, mul_w_h);
@@ -161,13 +180,14 @@ void lstm(dataType * mem,            // global memory pointer
     ElemWiseTanh(CtBRAM, tanh_ct);
     ElemWiseVecMul(OtBRAM, tanh_ct, htBRAM);
 
-    memcpy(bias_output, (const dataType*)(mem+44800+64), 64*1*sizeof(dataType));
+    memcpy(bias_output, (const dataType*)(mem+input_offset+44800+64), 64*1*sizeof(dataType));
 
     //calculating output
     mv_output(htBRAM, bias_output, outputBRAM);
     mem[output_offset] = outputBRAM;
 
     for(int i=0; i<64; i++){
+#pragma HLS UNROLL
         h_tmin1[i] = htBRAM[i];
         C_tmin1[i] = CtBRAM[i];
     }
