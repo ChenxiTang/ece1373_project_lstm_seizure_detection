@@ -124,12 +124,12 @@ void lstm(dataType * mem,            // global memory pointer
 	dataType outputBRAM;
 
 	//copy the input values to local BRAMs
-	memcpy(inputBRAM, (const dataType*) (mem+input_offset), 64*sizeof(dataType));
+	memcpy(inputBRAM, (const dataType*) (mem+input_offset/sizeof(dataType)), 64*sizeof(dataType));
 
 	//cpy data for forget gate
-	memcpy(WhBRAM, (const dataType*)(mem+input_offset+64), 64*64*sizeof(dataType));
-	memcpy(WxBRAM, (const dataType*)(mem+input_offset+64+64*64), 64*110*sizeof(dataType));
-	memcpy(bBRAM, (const dataType*)(mem+input_offset+64+64*64+64*110), 64*1*sizeof(dataType));
+	memcpy(WhBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+64), 64*64*sizeof(dataType));
+	memcpy(WxBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+64+64*64), 64*110*sizeof(dataType));
+	memcpy(bBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+64+64*64+64*110), 64*1*sizeof(dataType));
 
 	//calculating f_t
 	mv_state(WhBRAM, h_tmin1, mul_w_h);
@@ -138,9 +138,9 @@ void lstm(dataType * mem,            // global memory pointer
     ElemWiseSigmoid(sum_wh_wx_b, ftBRAM);
 
 	//cpy data for it gate
-	memcpy(WhBRAM, (const dataType*)(mem+input_offset+11200+64), 64*64*sizeof(dataType));
-	memcpy(WxBRAM, (const dataType*)(mem+input_offset+11200+64+64*64), 64*110*sizeof(dataType));
-	memcpy(bBRAM, (const dataType*)(mem+input_offset+11200+64+64*64+64*110), 64*1*sizeof(dataType));
+	memcpy(WhBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+11200+64), 64*64*sizeof(dataType));
+	memcpy(WxBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+11200+64+64*64), 64*110*sizeof(dataType));
+	memcpy(bBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+11200+64+64*64+64*110), 64*1*sizeof(dataType));
 
 
     //calculating it
@@ -150,9 +150,9 @@ void lstm(dataType * mem,            // global memory pointer
     ElemWiseSigmoid(sum_wh_wx_b, itBRAM);
 
 	//cpy data for Ctilda gate
-	memcpy(WhBRAM, (const dataType*)(mem+input_offset+22400+64), 64*64*sizeof(dataType));
-	memcpy(WxBRAM, (const dataType*)(mem+input_offset+22400+64+64*64), 64*110*sizeof(dataType));
-	memcpy(bBRAM, (const dataType*)(mem+input_offset+22400+64+64*64+64*110), 64*1*sizeof(dataType));
+	memcpy(WhBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+22400+64), 64*64*sizeof(dataType));
+	memcpy(WxBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+22400+64+64*64), 64*110*sizeof(dataType));
+	memcpy(bBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+22400+64+64*64+64*110), 64*1*sizeof(dataType));
 
     //calculating Ctilda
 	mv_state(WhBRAM, h_tmin1, mul_w_h);
@@ -161,9 +161,9 @@ void lstm(dataType * mem,            // global memory pointer
     ElemWiseTanh(sum_wh_wx_b, CtildaBRAM);
 
 	//cpy data for Ctilda gate
-	memcpy(WhBRAM, (const dataType*)(mem+input_offset+33600+64), 64*64*sizeof(dataType));
-	memcpy(WxBRAM, (const dataType*)(mem+input_offset+33600+64+64*64), 64*110*sizeof(dataType));
-	memcpy(bBRAM, (const dataType*)(mem+input_offset+33600+64+64*64+64*110), 64*1*sizeof(dataType));
+	memcpy(WhBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+33600+64), 64*64*sizeof(dataType));
+	memcpy(WxBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+33600+64+64*64), 64*110*sizeof(dataType));
+	memcpy(bBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+33600+64+64*64+64*110), 64*1*sizeof(dataType));
 
     //calculating Ot
 	mv_state(WhBRAM, h_tmin1, mul_w_h);
@@ -180,11 +180,11 @@ void lstm(dataType * mem,            // global memory pointer
     ElemWiseTanh(CtBRAM, tanh_ct);
     ElemWiseVecMul(OtBRAM, tanh_ct, htBRAM);
 
-    memcpy(bias_output, (const dataType*)(mem+input_offset+44800+64), 64*1*sizeof(dataType));
+    memcpy(bias_output, (const dataType*)(mem+input_offset/sizeof(dataType)+44800+64), 64*1*sizeof(dataType));
 
     //calculating output
     mv_output(htBRAM, bias_output, outputBRAM);
-    mem[output_offset] = outputBRAM;
+    mem[output_offset/sizeof(dataType)] = outputBRAM;
 
     for(int i=0; i<64; i++){
 #pragma HLS UNROLL
