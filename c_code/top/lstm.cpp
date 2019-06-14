@@ -18,7 +18,7 @@ void lstm(dataType * mem,            // global memory pointer
         int output_offset      // offset of outputs
 		){
 	//Weights and biases offset
-	int Wf_h_offset = input_offset;
+	int Wf_h_offset = input_offset+ 110*sizeof(dataType);
 	int Wf_x_offset = Wf_h_offset + 64*64*sizeof(dataType);
 	int bf_offset = Wf_x_offset + 64*110*sizeof(dataType);
 
@@ -34,10 +34,11 @@ void lstm(dataType * mem,            // global memory pointer
 	int Wo_x_offset = Wo_h_offset + 64*64*sizeof(dataType);
 	int bo_offset =  Wo_x_offset + 64*110*sizeof(dataType);
 
-	int bias_output_offset = bo_offset + 64*1*sizeof(bo_offset);
+	int W_output_offset = bo_offset + 64*1*sizeof(dataType);
+	int b_output_offset = W_output_offset + 64*1*sizeof(dataType);
 
 	//Intermediate values' offset
-	int C_tmin1_offset = bias_output_offset + 64*1*sizeof(dataType);
+	int C_tmin1_offset = b_output_offset + 1*sizeof(dataType);
 	int h_tmin1_offset = C_tmin1_offset + 64*1*sizeof(dataType);
 	int f_t_offset = h_tmin1_offset + 64*1*sizeof(dataType);
 	int i_t_offset = f_t_offset + 64*1*sizeof(dataType);
@@ -66,6 +67,9 @@ void lstm(dataType * mem,            // global memory pointer
 	int mul_ft_ctmin1_offset = sum_woh_wox_bo + 64*1*sizeof(dataType);
 	int mul_it_ctilda_offset = mul_ft_ctmin1_offset + 64*1*sizeof(dataType);
 	int tanh_ct_offset = mul_it_ctilda_offset + 64*1*sizeof(dataType);
+
+	int mul_W_ht_offset = tanh_ct_offset + 64*1*sizeof(dataType);
+	int sum_Wht_bias = mul_W_ht_offset + 64*1*sizeof(dataType);
 
 	//calculating f_t
 	mv_state(mem, Wf_h_offset, h_tmin1_offset, mul_wf_h_offset);
@@ -101,7 +105,9 @@ void lstm(dataType * mem,            // global memory pointer
     ElemWiseVecMul(mem, O_t_offset, tanh_ct_offset, h_t_offset);
 
     //calculating output
-    mv_output(mem, h_t_offset, bias_output_offset, output_offset);
+    mv_output(mem, h_t_offset, W_output_offset, mul_W_ht_offset);
+    ElemWiseVecAdd(mem, mul_W_ht_offset, b_output_offset, sum_Wht_bias);
+    ElemWiseTanh(mem, sum_Wht_bias, output_offset);
 
     C_tmin1_offset = C_t_offset;
     h_tmin1_offset = h_t_offset;
