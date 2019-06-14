@@ -64,4 +64,4 @@ puts "Post Route WNS = $WNS"
 set BUILD_DATE [ clock format [ clock seconds ] -format %d%m%Y ]
 set BUILD_TIME [ clock format [ clock seconds ] -format %H%M%S ]
 write_debug_probes -force $rootDir/${designName}_${BUILD_DATE}_${BUILD_TIME}_${WNS}ns.ltx
-write_bitstream -force $rootDir/${designName}_${BUILD_DATE}_${BUILD_TIME}_${WNS}ns.bit -force
+write_bitstream -force $rootDir/${designName}_${BUILD_DATE}_${BUILD_TIME}_${WNS}ns.bit -bin_file

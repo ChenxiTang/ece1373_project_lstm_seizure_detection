@@ -1,7 +1,7 @@
 ## FPGA design flow in non-project mode
 
-set projName test_design1
-set designName prj_design1
+set projName test_design2
+set designName prj_design2
 set rootDir vivado_designs
 set dir $rootDir/$projName
 file mkdir $dir
