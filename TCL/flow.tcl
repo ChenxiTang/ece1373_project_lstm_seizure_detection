@@ -9,5 +9,6 @@ set partNU xcvu095-ffvc1517-2-e
 
 source TCL/settings.tcl
 source TCL/top.tcl
-source TCL/gen.tcl
-source TCL/impl.tcl
+source TCL/prj_setting.tcl
+#source TCL/gen.tcl
+#source TCL/impl.tcl

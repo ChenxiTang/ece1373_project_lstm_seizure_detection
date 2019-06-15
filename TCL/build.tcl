@@ -1,13 +1,11 @@
 ## FPGA design flow in non-project mode
 
-set projName test_design1
-set designName prj_design1
+set projName noMB
+set designName noMB
 set rootDir vivado_designs
-set dir $rootDir/$projName
+set dir ${rootDir}/${projName}
 file mkdir $dir
 set partNU xcvu095-ffvc1517-2-e
 
-source TCL/settings.tcl
-source TCL/top.tcl
-source TCL/gen.tcl
-source TCL/impl.tcl
+
+source TCL/top_no_MB.tcl

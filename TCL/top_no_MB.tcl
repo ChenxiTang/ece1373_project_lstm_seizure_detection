@@ -6,18 +6,7 @@
 
 create_project $designName $dir -part xcvu095-ffvc1517-2-e -force 
 
-set_property  ip_repo_paths  {IP_REPO/ocl_ips\
-IP_REPO/pcie_status\
-IP_REPO/new_PCIe_status\
-hls_proj/sig_band_proj/solution1/impl/ip\
-hls_proj/ph_proj/solution1/impl/ip \
-hls_proj/ElemWiseSigmoid_proj/solution1/impl/ip\
-hls_proj/ElemWiseTanh_proj/solution1/impl/ip\
-hls_proj/ElemWiseVecAdd_proj/solution1/impl/ip\
-hls_proj/ElemWiseVecMul_proj/solution1/impl/ip\
-hls_proj/mv_input_proj/solution1/impl/ip\
-hls_proj/mv_output_proj/solution1/impl/ip\
-hls_proj/mv_state_proj/solution1/impl/ip} [current_project]
+set_property  ip_repo_paths  {IP_REPO/ocl_ips} [current_project]
 
 add_files -fileset constrs_1 -norecurse { \
 support/bitstream.xdc  \
@@ -31,12 +20,14 @@ support/pcie_constr.xdc}
 
 update_ip_catalog
 
-source TCL/corrected_xdma_fir_mvs_dummies_v1.tcl
+source TCL/bd_no_MB_pcie.tcl
+
+start_gui
+open_bd_design ${dir}/${designName}.srcs/sources_1/bd/${designName}/${designName}.bd
 
 validate_bd_design
-
-#start_gui
-#open_bd_design {$dir/$designName.srcs/sources_1/bd/design_1/design_1.bd}
+make_wrapper -files [get_files ${dir}/${designName}.srcs/sources_1/bd/${designName}/${designName}.bd] -top
+add_files -norecurse  ${dir}/${designName}.srcs/sources_1/bd/${designName}/hdl/${designName}_wrapper.v
 
 
 

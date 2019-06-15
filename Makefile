@@ -23,4 +23,13 @@ mv_state_hls:
 	vivado_hls hls_proj/mv_state_hls.tcl
 
 prj: all_hls
+	vivado -mode batch -source TCL/flow.tcl
+
+ip_test:
 	vivado -mode batch -source TCL/build.tcl
+
+test:
+	g++ src/*.cpp src/*.c -I src -I./ -o test -std=c++11
+
+rescan:
+	echo ekYD3qPUAMbm49UD > /dev/rescan-fpga

@@ -9,18 +9,25 @@ cd hls_prj: If you have tcls script that could automatically rebuild all
 the IP, put them in there. If not, jut leave it empty as it is right now
 
 
-NOTE ON RECONSTRUCTING THE PROJECT (in Linux environment) 
+NOTE ON GENERATING HW FOR SINGLE IP TEST	
 
-clone the repo and make sure your working directory is ~/ece1373_project_seizure
+clone the repo and make sure your working directory is ~/ece1373_project_seizure/
 
 In the terminal:
 
 source sourceme.sh
 
-make prj
+make ip_test
 
-These two commands will generate project directories, HLS projects and export IPs, and Vivado block designs containing MB processor, PCIe-AXI bridge, DDR4 MIG that addresses 2GB of memory, an FIR compiler, and seven dummy blocks to be replaced with HLS projects. After everything is set up, the GUI will open. 
+If there is no bug, you should be able to see the block design opened. Add your IP to IP repo path and replace dummy with your test IP. Change offset address to a 
+low value (0x00010000 for example). Click generate bit stream. 
 
-More to be added:
+When generation is finished, you may see warnings about timing issues. It will be improved for the final design. If WNS<-1ns, it may be safe to ignore for now. 
 
-*Current issues: PCIe-AXI Bridge Gen3 driver is not provided by Xilinx, we may not be able to use MB processor if we use PCIe-DMA bridge in Endpoint configuration, Ultrascale does not support PCIe-DMA bridge in root complex configuration (needed for MB processor control) 
+Open Hardware Manager and program the board. 
+
+After the board is programmed, compile your testbench and use the following command to make sure that the host PC knows where PCIe device is
+
+make rescan
+
+After this you can run your test program.
