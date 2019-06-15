@@ -52,15 +52,15 @@ void lstm(dataType * mem,            // global memory pointer
 	int mul_wf_x_offset = mul_wf_h_offset + 64*1*sizeof(dataType);
 	int sum_wfh_wfx_bf = mul_wf_x_offset + 64*1*sizeof(dataType);
 
-	int mul_wi_h_offset = h_t_offset + 64*1*sizeof(dataType);
+	int mul_wi_h_offset = sum_wfh_wfx_bf + 64*1*sizeof(dataType);
 	int mul_wi_x_offset = mul_wi_h_offset + 64*1*sizeof(dataType);
 	int sum_wih_wix_bi = mul_wi_x_offset + 64*1*sizeof(dataType);
 
-	int mul_wc_h_offset = h_t_offset + 64*1*sizeof(dataType);
+	int mul_wc_h_offset = sum_wih_wix_bi + 64*1*sizeof(dataType);
 	int mul_wc_x_offset = mul_wc_h_offset + 64*1*sizeof(dataType);
 	int sum_wch_wcx_bc = mul_wc_x_offset + 64*1*sizeof(dataType);
 
-	int mul_wo_h_offset = h_t_offset + 64*1*sizeof(dataType);
+	int mul_wo_h_offset = sum_wch_wcx_bc + 64*1*sizeof(dataType);
 	int mul_wo_x_offset = mul_wo_h_offset + 64*1*sizeof(dataType);
 	int sum_woh_wox_bo = mul_wo_x_offset + 64*1*sizeof(dataType);
 
@@ -71,27 +71,36 @@ void lstm(dataType * mem,            // global memory pointer
 	int mul_W_ht_offset = tanh_ct_offset + 64*1*sizeof(dataType);
 	int sum_Wht_bias = mul_W_ht_offset + 64*1*sizeof(dataType);
 
+	//initialize C_t-1, h_t-1 for first time stamp
+	for(int i = 0; i < 64; i++){
+		mem[C_tmin1_offset+i] = 0;
+		mem[h_tmin1_offset+i] = 0;
+	}
+
+	int temp_offset;
+
+	for(int i = 0; i <  XXXX; i++){
 	//calculating f_t
 	mv_state(mem, Wf_h_offset, h_tmin1_offset, mul_wf_h_offset);
-	mv_input(mem, Wf_x_offset, h_tmin1_offset, mul_wf_x_offset);
+	mv_input(mem, Wf_x_offset, input_offset, mul_wf_x_offset);
     ElemWiseVecAdd3(mem, mul_wf_h_offset, mul_wf_x_offset, bf_offset, sum_wfh_wfx_bf);
     ElemWiseSigmoid(mem, sum_wfh_wfx_bf, f_t_offset);
 
     //calculating it
 	mv_state(mem, Wi_h_offset, h_tmin1_offset, mul_wi_h_offset);
-	mv_input(mem, Wi_x_offset, h_tmin1_offset, mul_wi_x_offset);
+	mv_input(mem, Wi_x_offset, input_offset, mul_wi_x_offset);
     ElemWiseVecAdd3(mem, mul_wi_h_offset, mul_wi_x_offset, bi_offset, sum_wih_wix_bi);
     ElemWiseSigmoid(mem, sum_wih_wix_bi, i_t_offset);
 
     //calculating Ctilda
 	mv_state(mem, Wc_h_offset, h_tmin1_offset, mul_wc_h_offset);
-	mv_input(mem, Wc_x_offset, h_tmin1_offset, mul_wc_x_offset);
+	mv_input(mem, Wc_x_offset, input_offset, mul_wc_x_offset);
     ElemWiseVecAdd3(mem, mul_wc_h_offset, mul_wc_x_offset, bc_offset, sum_wch_wcx_bc);
     ElemWiseTanh(mem, sum_wch_wcx_bc, C_tilda_offset);
 
     //calculating Ot
 	mv_state(mem, Wo_h_offset, h_tmin1_offset, mul_wo_h_offset);
-	mv_input(mem, Wo_x_offset, h_tmin1_offset, mul_wo_x_offset);
+	mv_input(mem, Wo_x_offset, input_offset, mul_wo_x_offset);
     ElemWiseVecAdd3(mem, mul_wo_h_offset, mul_wo_x_offset, bo_offset, sum_woh_wox_bo);
     ElemWiseSigmoid(mem, sum_woh_wox_bo, O_t_offset);
 
@@ -109,7 +118,14 @@ void lstm(dataType * mem,            // global memory pointer
     ElemWiseVecAdd(mem, mul_W_ht_offset, b_output_offset, sum_Wht_bias);
     ElemWiseTanh(mem, sum_Wht_bias, output_offset);
 
-    C_tmin1_offset = C_t_offset;
-    h_tmin1_offset = h_t_offset;
+    //swapping the offset of ht,h_t-1
+    temp_offset = C_t_offset;
+    C_t_offset = C_tmin1_offset;
+    C_tmin1_offset = temp_offset;
+
+    temp_offset = h_t_offset;
+    h_t_offset = h_tmin1_offset;
+    h_tmin1_offset = temp_offset;
+	}
 
 }
