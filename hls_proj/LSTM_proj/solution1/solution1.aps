@@ -1,0 +1,25 @@
+<AutoPilot:solution xmlns:AutoPilot="com.autoesl.autopilot.solution">
+    <config>
+        <config_interface m_axi_addr64="1" m_axi_offset="off" register_io="off"/>
+    </config>
+    <name>
+        <value string="solution1"/>
+    </name>
+    <project>
+        <value string="LSTM_proj"/>
+    </project>
+    <targetInfo>
+        <TargetInfo value="xcvu095:-ffvc1517:-2-e"/>
+    </targetInfo>
+    <libraryList>
+        <library value="xilinx/virtexu/virtexu" name="DefaultPlatform"/>
+        <library value="xilinx/virtexu/virtexu_fpv7" name="DefaultPlatform"/>
+    </libraryList>
+    <downStreamTool>
+        <DownStreamTool name="vivado"/>
+    </downStreamTool>
+    <clockList>
+        <clock default="false" name="default" period="250MHz"/>
+    </clockList>
+</AutoPilot:solution>
+

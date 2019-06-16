@@ -3,8 +3,8 @@ open_project LSTM_proj
 set_top lstm 
 add_files ../c_code/ElemWiseVecAdd/ElemWiseVecAdd.cpp
 add_files ../c_code/ElemWiseVecMul/ElemWiseVecMul.cpp
-add_files ../c_code/ElemWiseVecTanh/ElemWiseVecTanh.cpp
-add_files ../c_code/ElemWiseVecSigmoid/ElemWiseVecSigmoid.cpp
+add_files ../c_code/ElemWiseTanh/ElemWiseTanh.cpp
+add_files ../c_code/ElemWiseSigmoid/ElemWiseSigmoid.cpp
 add_files ../c_code/matrix_vector_mult/mv_state.cpp
 add_files ../c_code/matrix_vector_mult/mv_input.cpp
 add_files ../c_code/matrix_vector_mult/mv_output.cpp
