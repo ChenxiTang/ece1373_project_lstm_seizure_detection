@@ -183,7 +183,7 @@ file = open(file_name + file_end2, "w")
 for i in range(61440):
     for j in range(64):
         file.write('%f\n' % cell_series[i,j])
-	print(cell_series[i,j])
+	#print(cell_series[i,j])
 file.close()
 print(cell_series.shape)
 #"""
