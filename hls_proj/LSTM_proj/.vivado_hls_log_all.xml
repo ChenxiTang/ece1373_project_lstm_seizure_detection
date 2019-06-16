@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <csimLog>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="LSTM_proj" solutionName="solution1" date="2019-06-16T04:43:41.158+0000"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="LSTM_proj" solutionName="solution1" date="2019-06-16T04:42:14.474+0000"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="LSTM_proj" solutionName="solution1" date="2019-06-16T04:37:05.320+0000"/>
+        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="LSTM_proj" solutionName="solution1" date="2019-06-16T03:14:40.927+0000"/>
+        <logs message="@E Simulation failed: SIGSEGV." projectName="LSTM_proj" solutionName="solution1" date="2019-06-16T03:14:40.920+0000"/>
+        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="LSTM_proj" solutionName="solution1" date="2019-06-16T03:07:18.772+0000"/>
+        <logs message="@E Simulation failed: SIGSEGV." projectName="LSTM_proj" solutionName="solution1" date="2019-06-16T03:07:18.763+0000"/>
+        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="LSTM_proj" solutionName="solution1" date="2019-06-16T03:05:45.713+0000"/>
+        <logs message="@E Simulation failed: SIGSEGV." projectName="LSTM_proj" solutionName="solution1" date="2019-06-16T03:05:45.706+0000"/>
+        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="LSTM_proj" solutionName="solution1" date="2019-06-16T03:03:59.118+0000"/>
+        <logs message="@E Simulation failed: SIGSEGV." projectName="LSTM_proj" solutionName="solution1" date="2019-06-16T03:03:59.109+0000"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="LSTM_proj" solutionName="solution1" date="2019-06-16T02:26:40.999+0000"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="LSTM_proj" solutionName="solution1" date="2019-06-16T02:15:34.787+0000"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="LSTM_proj" solutionName="solution1" date="2019-06-16T01:39:59.821+0000"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="LSTM_proj" solutionName="solution1" date="2019-06-16T01:23:02.547+0000"/>
+      </csimLog>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>

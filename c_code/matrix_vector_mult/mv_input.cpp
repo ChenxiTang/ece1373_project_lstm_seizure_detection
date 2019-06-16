@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <float.h>
 #include "matrix_vector.h"
+#include <fstream>
 
 // matrix-vector multiplication with input vector (110 x 1 vector)
 void mv_input(dataType * mem,            // global memory pointer
@@ -27,6 +28,7 @@ void mv_input(dataType * mem,            // global memory pointer
     // Columns
     for (int col = 0; col < 110; col++){
      output_element += mem[input1_offset/sizeof(dataType) + row*110 + col]*mem[input2_offset/sizeof(dataType) + col];
+     	 //printf("x %f\n",mem[input2_offset/sizeof(dataType) + col]);
      }
      // Write output
     mem[output_offset/sizeof(dataType) + row] = output_element;

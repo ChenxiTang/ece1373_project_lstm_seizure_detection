@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="ElemWiseSigmoid.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/ElemWiseSigmoid/ElemWiseSigmoid.cpp"/>
+    <originFiles name="ElemWiseTanh.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/ElemWiseTanh/ElemWiseTanh.cpp"/>
+    <originFiles name="ElemWiseVecAdd.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/ElemWiseVecAdd/ElemWiseVecAdd.cpp"/>
+    <originFiles name="ElemWiseVecMul.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/ElemWiseVecMul/ElemWiseVecMul.cpp"/>
+    <originFiles name="lstm.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/top/lstm.cpp"/>
+    <originFiles name="mv_input.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/matrix_vector_mult/mv_input.cpp"/>
+    <originFiles name="mv_output.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/matrix_vector_mult/mv_output.cpp"/>
+    <originFiles name="mv_state.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/matrix_vector_mult/mv_state.cpp"/>
+    <originFiles name="Wxf.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/Wxf.txt"/>
+    <originFiles name="Wxc.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/Wxc.txt"/>
+    <originFiles name="Wxo.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/Wxo.txt"/>
+    <originFiles name="Whc.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/Whc.txt"/>
+    <originFiles name="Whf.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/Whf.txt"/>
+    <originFiles name="Whi.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/Whi.txt"/>
+    <originFiles name="bo.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/bo.txt"/>
+    <originFiles name="by.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/by.txt"/>
+    <originFiles name="bf.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/bf.txt"/>
+    <originFiles name="bi.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/bi.txt"/>
+    <originFiles name="Who.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/Who.txt"/>
+    <originFiles name="bc.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/bc.txt"/>
+    <originFiles name="Wy.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/Wy.txt"/>
+    <originFiles name="Wxi.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/Wxi.txt"/>
+    <originFiles name="states_series.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/states_series.txt"/>
+    <originFiles name="logits_series.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/logits_series.txt"/>
+    <originFiles name="predictions_series.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/predictions_series.txt"/>
+  </source>
+  <testbench>
+    <originFiles name="lstm_test.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/top/lstm_test.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

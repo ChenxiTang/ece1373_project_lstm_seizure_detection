@@ -61,7 +61,7 @@ Whc = np.load(file_name + file_end)
 file = open(file_name + file_end2, "w")
 for i in range(64):
     for j in range(64):
-        file.write('%f\n' % Whc[i,j])
+        file.write('%f\n' % Whc[j,i])
 file.close()
 print(Whc.shape)
 
@@ -70,7 +70,7 @@ Whf = np.load(file_name + file_end)
 file = open(file_name + file_end2, "w")
 for i in range(64):
     for j in range(64):
-        file.write('%f\n' % Whf[i,j])
+        file.write('%f\n' % Whf[j,i])
 file.close()
 print(Whf.shape)
 
@@ -79,7 +79,7 @@ Whi = np.load(file_name + file_end)
 file = open(file_name + file_end2, "w")
 for i in range(64):
     for j in range(64):
-        file.write('%f\n' % Whi[i,j])
+        file.write('%f\n' % Whi[j,i])
 file.close()
 print(Whi.shape)
 
@@ -88,7 +88,7 @@ Who = np.load(file_name + file_end)
 file = open(file_name + file_end2, "w")
 for i in range(64):
     for j in range(64):
-        file.write('%f\n' % Who[i,j])
+        file.write('%f\n' % Who[j,i])
 file.close()
 print(Who.shape)
 
