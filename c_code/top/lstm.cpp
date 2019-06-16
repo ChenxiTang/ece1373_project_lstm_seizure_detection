@@ -12,13 +12,14 @@
 #include "../ElemWiseVecMul/ElemWiseVecMul.h"
 
 typedef float dataType;
+int samples = 61440;
 
-void lstm(dataType * mem,            // global memory pointer
+void lstm(dataType * mem,        // global memory pointer
 		int input_offset,       // offset of inputs
         int output_offset      // offset of outputs
 		){
 	//Weights and biases offset
-	int Wf_h_offset = input_offset+ 110*sizeof(dataType);
+	int Wf_h_offset = input_offset+ samples*110*sizeof(dataType);
 	int Wf_x_offset = Wf_h_offset + 64*64*sizeof(dataType);
 	int bf_offset = Wf_x_offset + 64*110*sizeof(dataType);
 
@@ -79,10 +80,10 @@ void lstm(dataType * mem,            // global memory pointer
 
 	int temp_offset;
 
-	for(int i = 0; i <  XXXX; i++){
+	for(int i = 0; i < samples; i++){
 	//calculating f_t
 	mv_state(mem, Wf_h_offset, h_tmin1_offset, mul_wf_h_offset);
-	mv_input(mem, Wf_x_offset, input_offset, mul_wf_x_offset);
+	mv_input(mem, Wf_x_offset, input_offset+i*110, mul_wf_x_offset);
     ElemWiseVecAdd3(mem, mul_wf_h_offset, mul_wf_x_offset, bf_offset, sum_wfh_wfx_bf);
     ElemWiseSigmoid(mem, sum_wfh_wfx_bf, f_t_offset);
 
@@ -116,7 +117,7 @@ void lstm(dataType * mem,            // global memory pointer
     //calculating output
     mv_output(mem, h_t_offset, W_output_offset, mul_W_ht_offset);
     ElemWiseVecAdd(mem, mul_W_ht_offset, b_output_offset, sum_Wht_bias);
-    ElemWiseTanh(mem, sum_Wht_bias, output_offset);
+    ElemWiseSigmoid(mem, sum_Wht_bias, output_offset+i);
 
     //swapping the offset of ht,h_t-1
     temp_offset = C_t_offset;
