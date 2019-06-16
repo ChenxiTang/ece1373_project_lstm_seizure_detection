@@ -93,9 +93,9 @@ void lstm(dataType * mem,        // global memory pointer
 
 	for(int i = 0; i < samples; i++){
 	///*
-	//if (i != 1)
+	if (i != 0)
 		for(int j = 0; j < 64; j++){
-				mem[C_tmin1_offset/sizeof(dataType)+j] = 0;
+				mem[C_tmin1_offset/sizeof(dataType)+j] = 1.0;
 				//mem[h_tmin1_offset/sizeof(dataType)+j] = 0;
 			}
 	//*/
@@ -136,19 +136,19 @@ void lstm(dataType * mem,        // global memory pointer
     //calculating h_t
     ElemWiseTanh(mem, C_t_offset, tanh_ct_offset);
     ElemWiseVecMul(mem, O_t_offset, tanh_ct_offset, h_t_offset);
-    ///*
+    /*
     if (i < 3)
     	for (int jj = 0; jj < 64; jj++)
     		printf("C %f\n",mem[h_t_offset/sizeof(dataType)+jj]);
-	//*/
+	*/
     //calculating output
     mv_output(mem, h_t_offset, W_output_offset, mul_W_ht_offset);
-    /*
+    ///*
     if (i < 3){
     float temp = mem[mul_W_ht_offset/sizeof(dataType)] + mem[b_output_offset/sizeof(dataType)];
     printf("output %f\n", temp);
     }
-    */
+    //*/
     //ElemWiseVecAdd(mem, mul_W_ht_offset, b_output_offset, sum_Wht_bias);
 	//ElemWiseSigmoid(mem, sum_Wht_bias, output_offset+i*sizeof(dataType));
 
