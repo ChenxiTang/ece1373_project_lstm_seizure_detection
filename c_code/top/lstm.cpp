@@ -144,7 +144,7 @@ void lstm(dataType * mem,        // global memory pointer
 	*/
     //calculating output
     mv_output(mem, h_t_offset, W_output_offset, mul_W_ht_offset);
-    if (i < 3){
+    if (i < 257){
     float temp = mem[mul_W_ht_offset/sizeof(dataType)] + mem[b_output_offset/sizeof(dataType)];
     printf("output %f\n", temp);
     }

@@ -267,6 +267,7 @@ int main(){
     printf("compare %f:\n", golden_output[0]);
     printf("compare %f:\n", golden_output[1]);
     printf("compare %f:\n", golden_output[2]);
+    printf("compare %f:\n", golden_output[256]);
     /*
     for (int i = size-n; i < size-n + 3; i++){
         if (golden_output[i-size+n] != input[i])
