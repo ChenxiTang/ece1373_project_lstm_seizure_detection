@@ -8,11 +8,11 @@ here1
 got here
 i: 6803265
 here
-output 0.001295
-output 8.364969
-output 8.501000
-compare 0.001294:
-compare 10.433792:
-compare 10.519346:
+output -0.007502
+output -0.009168
+output -0.008884
+compare -0.007502:
+compare -0.009168:
+compare -0.008884:
 INFO: [SIM 1] CSim done with 0 errors.
 INFO: [SIM 3] *************** CSIM finish ***************

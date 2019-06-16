@@ -1,5 +1,5 @@
 INFO: [HLS 200-10] Running '/opt/Xilinx/Vivado_HLS/2017.2/bin/unwrapped/lnx64.o/vivado_hls'
-INFO: [HLS 200-10] For user 'koernerja' on host 'ece1373-a2-cont1.lxd' (Linux_x86_64 version 4.4.0-119-generic) on Sun Jun 16 22:30:25 UTC 2019
+INFO: [HLS 200-10] For user 'koernerja' on host 'ece1373-a2-cont1.lxd' (Linux_x86_64 version 4.4.0-119-generic) on Sun Jun 16 23:48:01 UTC 2019
 INFO: [HLS 200-10] On os Ubuntu 16.04.3 LTS
 INFO: [HLS 200-10] In directory '/home/koernerja/Desktop/ece1373_project_seizure/hls_proj'
 INFO: [HLS 200-10] Opening project '/home/koernerja/Desktop/ece1373_project_seizure/hls_proj/LSTM_proj'.
@@ -16,11 +16,11 @@ here1
 got here
 i: 6803265
 here
-output 0.001295
-output 8.364969
-output 8.501000
-compare 0.001294:
-compare 10.433792:
-compare 10.519346:
+output -0.007502
+output -0.009168
+output -0.008884
+compare -0.007502:
+compare -0.009168:
+compare -0.008884:
 INFO: [SIM 211-1] CSim done with 0 errors.
 INFO: [SIM 211-3] *************** CSIM finish ***************
