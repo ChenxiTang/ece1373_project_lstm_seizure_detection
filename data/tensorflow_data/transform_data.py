@@ -143,7 +143,7 @@ logits_series = np.load(file_name + file_end)
 print(logits_series.shape)
 #logits_series = np.transpose(logits_series,(1,0,2))
 #print(logits_series.shape)
-logits_series = np.reshape(logits_series, (61440, 1))
+#logits_series = np.reshape(logits_series, (61440, 1))
 file = open(file_name + file_end2, "w")
 for i in range(61440):
     file.write('%f\n' % logits_series[i])
@@ -154,7 +154,7 @@ file_name = "predictions_series"
 predictions_series = np.load(file_name + file_end)
 #predictions_series = np.transpose(predictions_series,(1,0,2))
 #print(predictions_series.shape)
-predictions_series = np.reshape(predictions_series, (61440, 1))
+#predictions_series = np.reshape(predictions_series, (61440, 1))
 file = open(file_name + file_end2, "w")
 for i in range(61440):
     file.write('%f\n' % predictions_series[i])
@@ -165,11 +165,25 @@ file_name = "states_series"
 states_series = np.load(file_name + file_end)
 #states_series = np.transpose(states_series,(1,0,2))
 #print(states_series.shape)
-states_series = np.reshape(states_series, (61440, 64))
+#states_series = np.reshape(states_series, (61440, 64))
 file = open(file_name + file_end2, "w")
 for i in range(61440):
     for j in range(64):
         file.write('%f\n' % states_series[i,j])
 file.close()
 print(states_series.shape)
+
+
+file_name = "cell_series"
+cell_series = np.load(file_name + file_end)
+#states_series = np.transpose(states_series,(1,0,2))
+print(cell_series.shape)
+#cell_series = np.reshape(cell_series, (61440, 64))
+file = open(file_name + file_end2, "w")
+for i in range(61440):
+    for j in range(64):
+        file.write('%f\n' % cell_series[i,j])
+	print(cell_series[i,j])
+file.close()
+print(cell_series.shape)
 #"""
