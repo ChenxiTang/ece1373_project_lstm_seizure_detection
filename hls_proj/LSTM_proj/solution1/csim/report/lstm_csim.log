@@ -1,18 +1,17 @@
 INFO: [SIM 2] *************** CSIM start ***************
 INFO: [SIM 4] CSIM will launch GCC as the compiler.
-   Compiling ../../../../../c_code/top/lstm.cpp in debug mode
-   Generating csim.exe
+make: 'csim.exe' is up to date.
 here
 size 6866305
 here1
 got here
 i: 6803265
 here
-output -0.012808
-output -0.018538
-output -0.021004
-compare -0.012808:
-compare -0.021044:
-compare -0.026876:
+output -0.006859
+output -0.012445
+output -0.015649
+compare -0.006859:
+compare -0.014231:
+compare -0.020259:
 INFO: [SIM 1] CSim done with 0 errors.
 INFO: [SIM 3] *************** CSIM finish ***************

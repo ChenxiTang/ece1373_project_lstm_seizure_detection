@@ -94,7 +94,9 @@ int main(){
         printf("Unable to open file\n");
     float temp;
     while (inFile >> temp) {
-        input[i] = temp;
+    	// changed by Jamie
+        //input[i] = temp;
+    	input[i] = 0.0;
         //printf("temp: %f\n",temp);
         i++;
     }
