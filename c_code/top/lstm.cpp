@@ -92,13 +92,13 @@ void lstm(dataType * mem,        // global memory pointer
 	int temp_offset;
 
 	for(int i = 0; i < samples; i++){
-	/*
-	if (i != 1)
+	///*
+	//if (i != 1)
 		for(int j = 0; j < 64; j++){
 				mem[C_tmin1_offset/sizeof(dataType)+j] = 0;
-				mem[h_tmin1_offset/sizeof(dataType)+j] = 0;
+				//mem[h_tmin1_offset/sizeof(dataType)+j] = 0;
 			}
-	*/
+	//*/
 	//calculating f_t
 	mv_state(mem, Wf_h_offset, h_tmin1_offset, mul_wf_h_offset);
 	mv_input(mem, Wf_x_offset, input_offset+(i*110*sizeof(dataType)), mul_wf_x_offset);
@@ -139,7 +139,7 @@ void lstm(dataType * mem,        // global memory pointer
     ///*
     if (i < 3)
     	for (int jj = 0; jj < 64; jj++)
-    		printf("C %f\n",mem[C_t_offset/sizeof(dataType)+jj]);
+    		printf("C %f\n",mem[h_t_offset/sizeof(dataType)+jj]);
 	//*/
     //calculating output
     mv_output(mem, h_t_offset, W_output_offset, mul_W_ht_offset);
