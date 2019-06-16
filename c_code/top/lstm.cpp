@@ -93,7 +93,7 @@ void lstm(dataType * mem,        // global memory pointer
 
 	for(int i = 0; i < samples; i++){
 	///*
-	if (i % 256 == 0)
+	//if (i % 256 == 0)
 		for(int j = 0; j < 64; j++){
 				mem[C_tmin1_offset/sizeof(dataType)+j] = 0;
 				mem[h_tmin1_offset/sizeof(dataType)+j] = 0;
@@ -144,7 +144,7 @@ void lstm(dataType * mem,        // global memory pointer
 	*/
     //calculating output
     mv_output(mem, h_t_offset, W_output_offset, mul_W_ht_offset);
-    if (i < 257){
+    if (i < 3){
     float temp = mem[mul_W_ht_offset/sizeof(dataType)] + mem[b_output_offset/sizeof(dataType)];
     printf("output %f\n", temp);
     }
