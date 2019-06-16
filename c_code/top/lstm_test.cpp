@@ -95,8 +95,8 @@ int main(){
     float temp;
     while (inFile >> temp) {
     	// changed by Jamie
-        //input[i] = temp;
-    	input[i] = 0.0;
+        input[i] = temp;
+    	//input[i] = 0.0;
         //printf("temp: %f\n",temp);
         i++;
     }
