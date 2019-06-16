@@ -29,6 +29,7 @@ bf = np.load(file_name + file_end)
 file = open(file_name + file_end2, "w")
 for i in range(64):
     file.write('%f\n' % bf[i])
+    print(bf[i])
 file.close()
 print(bf.shape)
 
