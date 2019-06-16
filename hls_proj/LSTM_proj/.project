@@ -132,6 +132,11 @@
 			<location>/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/by.txt</location>
 		</link>
 		<link>
+			<name>source/cell_series.txt</name>
+			<type>1</type>
+			<location>/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/cell_series.txt</location>
+		</link>
+		<link>
 			<name>source/logits_series.txt</name>
 			<type>1</type>
 			<location>/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/logits_series.txt</location>

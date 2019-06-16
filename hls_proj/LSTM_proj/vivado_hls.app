@@ -19,6 +19,7 @@
         <file name="../data/tensorflow_data/bi.txt" sc="0" tb="false" cflags=""/>
         <file name="../data/tensorflow_data/bo.txt" sc="0" tb="false" cflags=""/>
         <file name="../data/tensorflow_data/by.txt" sc="0" tb="false" cflags=""/>
+        <file name="../data/tensorflow_data/cell_series.txt" sc="0" tb="false" cflags=""/>
         <file name="../data/tensorflow_data/logits_series.txt" sc="0" tb="false" cflags=""/>
         <file name="../c_code/top/lstm.cpp" sc="0" tb="false" cflags=""/>
         <file name="../c_code/matrix_vector_mult/mv_input.cpp" sc="0" tb="false" cflags=""/>

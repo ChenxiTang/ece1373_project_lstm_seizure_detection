@@ -23,6 +23,7 @@ add_files ../data/tensorflow_data/bf.txt
 add_files ../data/tensorflow_data/bi.txt
 add_files ../data/tensorflow_data/bo.txt
 add_files ../data/tensorflow_data/by.txt
+add_files ../data/tensorflow_data/cell_series.txt
 add_files ../data/tensorflow_data/logits_series.txt
 add_files ../c_code/top/lstm.cpp
 add_files ../c_code/matrix_vector_mult/mv_input.cpp

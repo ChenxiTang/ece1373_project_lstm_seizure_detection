@@ -9,6 +9,7 @@
     <originFiles name="mv_input.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/matrix_vector_mult/mv_input.cpp"/>
     <originFiles name="mv_output.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/matrix_vector_mult/mv_output.cpp"/>
     <originFiles name="mv_state.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/matrix_vector_mult/mv_state.cpp"/>
+    <originFiles name="cell_series.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/cell_series.txt"/>
     <originFiles name="states_series.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/states_series.txt"/>
     <originFiles name="predictions_series.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/predictions_series.txt"/>
     <originFiles name="logits_series.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/logits_series.txt"/>

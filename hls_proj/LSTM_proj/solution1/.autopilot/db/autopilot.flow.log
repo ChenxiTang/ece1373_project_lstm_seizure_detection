@@ -1,4 +1,4 @@
-INFO: [HLS 200-0] Workspace /home/koernerja/Desktop/ece1373_project_seizure/hls_proj/LSTM_proj/solution1 opened at Sun Jun 16 20:05:45 UTC 2019
+INFO: [HLS 200-0] Workspace /home/koernerja/Desktop/ece1373_project_seizure/hls_proj/LSTM_proj/solution1 opened at Sun Jun 16 20:22:57 UTC 2019
 INFO: [HLS 200-100] Execute     config_clock -quiet -name default -period 4.0 -unit ns -default=false 
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
 INFO: [HLS 200-100] Command     config_clock returned 0; 0 sec.
@@ -63,7 +63,7 @@ INFO: [HLS 200-100] Command         ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Execute         source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/dsp48.hlp 
 INFO: [HLS 200-100] Command         ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Command       ap_source returned 0; 0 sec.
-INFO: [HLS 200-100] Command     import_lib returned 0; 0.02 sec.
+INFO: [HLS 200-100] Command     import_lib returned 0; 0.03 sec.
 INFO: [HLS 200-100] Execute     source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/virtexu/virtexu.gen 
 INFO: [HLS 200-100] Execute       source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/virtex.gen 
 INFO: [HLS 200-100] Execute         source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/xilinx.gen 
@@ -75,10 +75,10 @@ INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/commo
 INFO: [HLS 200-100] Command           ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/interface/nativeAXI4.gen 
 INFO: [HLS 200-100] Execute             source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/interface/saxilite.gen 
-INFO: [HLS 200-100] Command             ap_source returned 0; 0 sec.
+INFO: [HLS 200-100] Command             ap_source returned 0; 0.01 sec.
 INFO: [HLS 200-100] Execute             source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/interface/maxi.gen 
 INFO: [HLS 200-100] Command             ap_source returned 0; 0.01 sec.
-INFO: [HLS 200-100] Command           ap_source returned 0; 0.01 sec.
+INFO: [HLS 200-100] Command           ap_source returned 0; 0.02 sec.
 INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
 INFO: [HLS 200-100] Command           ap_source returned 0; 0.01 sec.
 INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
@@ -114,16 +114,16 @@ INFO: [HLS 200-100] Execute             source /opt/Xilinx/Vivado_HLS/2017.2/com
 INFO: [HLS 200-100] Command             ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Command           ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/dsp48.hlp 
-INFO: [HLS 200-100] Command           ap_source returned 0; 0 sec.
-INFO: [HLS 200-100] Command         ap_source returned 0; 0 sec.
-INFO: [HLS 200-100] Command       ap_source returned 0; 0 sec.
+INFO: [HLS 200-100] Command           ap_source returned 0; 0.01 sec.
+INFO: [HLS 200-100] Command         ap_source returned 0; 0.01 sec.
+INFO: [HLS 200-100] Command       ap_source returned 0; 0.01 sec.
 INFO: [HLS 200-100] Execute       source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/virtexu/virtexu_hp.hlp 
 INFO: [HLS 200-100] Command       ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Command     import_lib returned 0; 0.02 sec.
 INFO: [HLS 200-100] Execute     source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/virtexu/virtexu_fpv7.gen 
 INFO: [HLS 200-100] Execute       source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/xilinx_fpv6.gen 
-INFO: [HLS 200-100] Command       ap_source returned 0; 0.01 sec.
-INFO: [HLS 200-100] Command     ap_source returned 0; 0.01 sec.
+INFO: [HLS 200-100] Command       ap_source returned 0; 0 sec.
+INFO: [HLS 200-100] Command     ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Execute     set_part xcvu095-ffvc1517-2-e 
 INFO: [HLS 200-100] Execute       add_library xilinx/virtexu/virtexu:xcvu095:-ffvc1517:-2-e 
 INFO: [HLS 200-100] Execute         get_default_platform 
@@ -144,7 +144,7 @@ INFO: [HLS 200-100] Command       add_library returned 0; 0 sec.
 INFO: [HLS 200-10] Setting target device to 'xcvu095-ffvc1517-2-e'
 INFO: [HLS 200-100] Execute       get_default_platform 
 INFO: [HLS 200-100] Command       get_default_platform returned 0; 0 sec.
-INFO: [HLS 200-100] Command     set_part returned 0; 0.05 sec.
+INFO: [HLS 200-100] Command     set_part returned 0; 0.06 sec.
 INFO: [HLS 200-100] Execute     get_default_platform 
 INFO: [HLS 200-100] Command     get_default_platform returned 0; 0 sec.
 INFO: [HLS 200-100] Execute     config_chip_info -quiet -resource  {SLICE 67200}  {LUT 537600}    {FF 1075200}  {DSP48E 768}   {BRAM 3456}  
@@ -230,4 +230,48 @@ INFO: [HLS 200-100] Command     is_xip returned 0; 0 sec.
 INFO: [HLS 200-100] Execute     is_encrypted /home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/bo.txt 
 INFO: [HLS 200-100] Command     is_encrypted returned 0; 0 sec.
 INFO: [HLS 200-100] Execute     is_xip /home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/bo.txt 
-I
+INFO: [HLS 200-100] Command     is_xip returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_encrypted /home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/by.txt 
+INFO: [HLS 200-100] Command     is_encrypted returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_xip /home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/by.txt 
+INFO: [HLS 200-100] Command     is_xip returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_encrypted /home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/cell_series.txt 
+INFO: [HLS 200-100] Command     is_encrypted returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_xip /home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/cell_series.txt 
+INFO: [HLS 200-100] Command     is_xip returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_encrypted /home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/logits_series.txt 
+INFO: [HLS 200-100] Command     is_encrypted returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_xip /home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/logits_series.txt 
+INFO: [HLS 200-100] Command     is_xip returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_encrypted /home/koernerja/Desktop/ece1373_project_seizure/c_code/top/lstm.cpp 
+INFO: [HLS 200-100] Command     is_encrypted returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_xip /home/koernerja/Desktop/ece1373_project_seizure/c_code/top/lstm.cpp 
+INFO: [HLS 200-100] Command     is_xip returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_encrypted /home/koernerja/Desktop/ece1373_project_seizure/c_code/matrix_vector_mult/mv_input.cpp 
+INFO: [HLS 200-100] Command     is_encrypted returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_xip /home/koernerja/Desktop/ece1373_project_seizure/c_code/matrix_vector_mult/mv_input.cpp 
+INFO: [HLS 200-100] Command     is_xip returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_encrypted /home/koernerja/Desktop/ece1373_project_seizure/c_code/matrix_vector_mult/mv_output.cpp 
+INFO: [HLS 200-100] Command     is_encrypted returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_xip /home/koernerja/Desktop/ece1373_project_seizure/c_code/matrix_vector_mult/mv_output.cpp 
+INFO: [HLS 200-100] Command     is_xip returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_encrypted /home/koernerja/Desktop/ece1373_project_seizure/c_code/matrix_vector_mult/mv_state.cpp 
+INFO: [HLS 200-100] Command     is_encrypted returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_xip /home/koernerja/Desktop/ece1373_project_seizure/c_code/matrix_vector_mult/mv_state.cpp 
+INFO: [HLS 200-100] Command     is_xip returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_encrypted /home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/predictions_series.txt 
+INFO: [HLS 200-100] Command     is_encrypted returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_xip /home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/predictions_series.txt 
+INFO: [HLS 200-100] Command     is_xip returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_encrypted /home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/states_series.txt 
+INFO: [HLS 200-100] Command     is_encrypted returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     is_xip /home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/states_series.txt 
+INFO: [HLS 200-100] Command     is_xip returned 0; 0 sec.
+INFO: [HLS 200-100] Execute     source run_sim.tcl 
+INFO: [HLS 200-100] Command     ap_source returned 0; 14.54 sec.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-100] Command   csim_design returned 0; 115.42 sec.
+INFO: [HLS 200-100] Command ap_source returned 0; 115.7 sec.
+INFO: [HLS 200-100] Execute cleanup_all 
+INFO: [HLS 200-100] Command cleanup_all returned 0; 0 sec.
