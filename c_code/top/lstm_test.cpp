@@ -249,7 +249,7 @@ int main(){
     float* golden_output = (float*) malloc(sizeof(float)*n);
     
     i=0;
-    inFile.open("predictions_series.txt");
+    inFile.open("logits_series.txt");
     if (!inFile)
         printf("Unable to open file\n");
     while (inFile >> temp) {
@@ -262,13 +262,15 @@ int main(){
 
     printf("here\n");
     lstm(input, 0, (size-n)*sizeof(dataType));
-    //printf("compare %f %f:\n", golden_output[0], input[size-n]);
-    ///*
-    for (int i = size-n; i < size-n + 257; i++){
+    printf("compare %f:\n", golden_output[0]);
+    printf("compare %f:\n", golden_output[1]);
+    printf("compare %f:\n", golden_output[2]);
+    /*
+    for (int i = size-n; i < size-n + 3; i++){
         if (golden_output[i-size+n] != input[i])
             printf("error %d %f %f\n", i, golden_output[i-size+n], input[i]);
     }
-    //*/
+    */
     return 0;
 }
 

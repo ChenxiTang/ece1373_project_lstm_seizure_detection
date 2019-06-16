@@ -15,7 +15,7 @@ import numpy as np
 """
 file_end = ".npy"
 file_end2 = ".txt"
-"""
+#"""
 file_name = "bc"
 bc = np.load(file_name + file_end)
 file = open(file_name + file_end2, "w")
@@ -136,24 +136,24 @@ for i in range(64):
     file.write('%f\n' % Wy[i])
 file.close()
 print(Wy.shape)
-"""
+#"""
 
 file_name = "logits_series"
 logits_series = np.load(file_name + file_end)
 print(logits_series.shape)
-logits_series = np.transpose(logits_series,(1,0,2))
-print(logits_series.shape)
+#logits_series = np.transpose(logits_series,(1,0,2))
+#print(logits_series.shape)
 logits_series = np.reshape(logits_series, (61440, 1))
 file = open(file_name + file_end2, "w")
 for i in range(61440):
     file.write('%f\n' % logits_series[i])
 file.close()
 print(logits_series.shape)
-
+#"""
 file_name = "predictions_series"
 predictions_series = np.load(file_name + file_end)
-predictions_series = np.transpose(predictions_series,(1,0,2))
-print(predictions_series.shape)
+#predictions_series = np.transpose(predictions_series,(1,0,2))
+#print(predictions_series.shape)
 predictions_series = np.reshape(predictions_series, (61440, 1))
 file = open(file_name + file_end2, "w")
 for i in range(61440):
@@ -163,8 +163,8 @@ print(predictions_series.shape)
 
 file_name = "states_series"
 states_series = np.load(file_name + file_end)
-states_series = np.transpose(states_series,(1,0,2))
-print(states_series.shape)
+#states_series = np.transpose(states_series,(1,0,2))
+#print(states_series.shape)
 states_series = np.reshape(states_series, (61440, 64))
 file = open(file_name + file_end2, "w")
 for i in range(61440):
@@ -172,3 +172,4 @@ for i in range(61440):
         file.write('%f\n' % states_series[i,j])
 file.close()
 print(states_series.shape)
+#"""
