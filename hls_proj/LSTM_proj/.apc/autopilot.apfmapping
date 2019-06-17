@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="ElemWiseSigmoid.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/ElemWiseSigmoid/ElemWiseSigmoid.cpp"/>
     <originFiles name="ElemWiseTanh.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/ElemWiseTanh/ElemWiseTanh.cpp"/>
-    <originFiles name="ElemWiseVecAdd.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/ElemWiseVecAdd/ElemWiseVecAdd.cpp"/>
     <originFiles name="ElemWiseVecMul.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/ElemWiseVecMul/ElemWiseVecMul.cpp"/>
-    <originFiles name="lstm.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/top/lstm.cpp"/>
     <originFiles name="mv_input.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/matrix_vector_mult/mv_input.cpp"/>
     <originFiles name="mv_output.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/matrix_vector_mult/mv_output.cpp"/>
     <originFiles name="mv_state.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/matrix_vector_mult/mv_state.cpp"/>
@@ -27,6 +24,9 @@
     <originFiles name="Whi.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/Whi.txt"/>
     <originFiles name="Whf.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/Whf.txt"/>
     <originFiles name="Whc.txt" path="/home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/Whc.txt"/>
+    <originFiles name="lstm.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/top/lstm.cpp"/>
+    <originFiles name="ElemWiseVecAdd.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/ElemWiseVecAdd/ElemWiseVecAdd.cpp"/>
+    <originFiles name="ElemWiseSigmoid.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/ElemWiseSigmoid/ElemWiseSigmoid.cpp"/>
   </source>
   <testbench>
     <originFiles name="lstm_test.cpp" path="/home/koernerja/Desktop/ece1373_project_seizure/c_code/top/lstm_test.cpp"/>

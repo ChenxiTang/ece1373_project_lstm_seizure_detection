@@ -43,7 +43,7 @@ void ElemWiseSigmoid_single(dataType * mem,            // global memory pointer
 #pragma HLS INTERFACE s_axilite port=input_offset
 #pragma HLS INTERFACE s_axilite port=output_offset
 #pragma HLS INTERFACE s_axilite port=return bundle=CTRL_BUS
-    
+    	//printf("jere\n");
         //out[i] = in[i]/(1+abs(in[i]));
         
         //Hsigm

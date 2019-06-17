@@ -1,4 +1,4 @@
-INFO: [HLS 200-0] Workspace /home/koernerja/Desktop/ece1373_project_seizure/hls_proj/LSTM_proj/solution1 opened at Sun Jun 16 23:48:01 UTC 2019
+INFO: [HLS 200-0] Workspace /home/koernerja/Desktop/ece1373_project_seizure/hls_proj/LSTM_proj/solution1 opened at Mon Jun 17 00:59:07 UTC 2019
 INFO: [HLS 200-100] Execute     config_clock -quiet -name default -period 4.0 -unit ns -default=false 
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
 INFO: [HLS 200-100] Command     config_clock returned 0; 0 sec.
@@ -8,7 +8,7 @@ INFO: [HLS 200-100] Execute     import_lib /opt/Xilinx/Vivado_HLS/2017.2/common/
 INFO: [HLS 200-100] Execute       source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/xilinx.lib 
 INFO: [HLS 200-100] Execute         source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/interface/xilinx_interface.lib 
 INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/interface/plb46.lib 
-INFO: [HLS 200-100] Command           ap_source returned 0; 0 sec.
+INFO: [HLS 200-100] Command           ap_source returned 0; 0.01 sec.
 INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/interface/fsl.lib 
 INFO: [HLS 200-100] Command           ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/interface/axi4.lib 
@@ -17,7 +17,7 @@ INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/commo
 INFO: [HLS 200-100] Command           ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/interface/saxilite.lib 
 INFO: [HLS 200-100] Command           ap_source returned 0; 0 sec.
-INFO: [HLS 200-100] Command         ap_source returned 0; 0 sec.
+INFO: [HLS 200-100] Command         ap_source returned 0; 0.01 sec.
 INFO: [HLS 200-100] Execute         source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/dsp48.lib 
 INFO: [HLS 200-100] Command         ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Execute         source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/ip/xfft.lib 
@@ -26,11 +26,11 @@ INFO: [HLS 200-100] Execute         source /opt/Xilinx/Vivado_HLS/2017.2/common/
 INFO: [HLS 200-100] Command         ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Execute         source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/ip/dds_compiler.lib 
 INFO: [HLS 200-100] Command         ap_source returned 0; 0 sec.
-INFO: [HLS 200-100] Command       ap_source returned 0; 0.01 sec.
+INFO: [HLS 200-100] Command       ap_source returned 0; 0.02 sec.
 INFO: [HLS 200-100] Execute       source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/xilinx_old.lib 
 INFO: [HLS 200-100] Command       ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Execute       source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/xilinx_vivado.lib 
-INFO: [HLS 200-100] Command       ap_source returned 0; 0.01 sec.
+INFO: [HLS 200-100] Command       ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Execute       source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/xilinx.hlp 
 INFO: [HLS 200-100] Execute         source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/target_info.tcl 
 INFO: [HLS 200-100] Command         ap_source returned 0; 0 sec.
@@ -63,7 +63,7 @@ INFO: [HLS 200-100] Command         ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Execute         source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/dsp48.hlp 
 INFO: [HLS 200-100] Command         ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Command       ap_source returned 0; 0 sec.
-INFO: [HLS 200-100] Command     import_lib returned 0; 0.02 sec.
+INFO: [HLS 200-100] Command     import_lib returned 0; 0.04 sec.
 INFO: [HLS 200-100] Execute     source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/virtexu/virtexu.gen 
 INFO: [HLS 200-100] Execute       source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/virtex.gen 
 INFO: [HLS 200-100] Execute         source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/xilinx.gen 
@@ -75,9 +75,9 @@ INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/commo
 INFO: [HLS 200-100] Command           ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/interface/nativeAXI4.gen 
 INFO: [HLS 200-100] Execute             source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/interface/saxilite.gen 
-INFO: [HLS 200-100] Command             ap_source returned 0; 0.01 sec.
-INFO: [HLS 200-100] Execute             source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/interface/maxi.gen 
 INFO: [HLS 200-100] Command             ap_source returned 0; 0 sec.
+INFO: [HLS 200-100] Execute             source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/interface/maxi.gen 
+INFO: [HLS 200-100] Command             ap_source returned 0; 0.01 sec.
 INFO: [HLS 200-100] Command           ap_source returned 0; 0.01 sec.
 INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
 INFO: [HLS 200-100] Command           ap_source returned 0; 0.01 sec.
@@ -91,18 +91,18 @@ INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/commo
 INFO: [HLS 200-100] Command           ap_source returned 0; 0.11 sec.
 INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/ip/xfir.gen 
 INFO: [HLS 200-100] Command           ap_source returned 0; 0 sec.
-INFO: [HLS 200-100] Command         ap_source returned 0; 0.14 sec.
+INFO: [HLS 200-100] Command         ap_source returned 0; 0.15 sec.
 INFO: [HLS 200-100] Execute         source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/dsp48.gen 
 INFO: [HLS 200-100] Command         ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Command       ap_source returned 0; 0.15 sec.
-INFO: [HLS 200-100] Command     ap_source returned 0; 0.16 sec.
+INFO: [HLS 200-100] Command     ap_source returned 0; 0.15 sec.
 INFO: [HLS 200-100] Execute     open_platform DefaultPlatform 
 INFO: [HLS 200-100] Command     open_platform returned 0; 0 sec.
 INFO: [HLS 200-100] Execute     import_lib /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/virtexu/virtexu_fpv7 
 INFO: [HLS 200-100] Execute       source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/xilinx_fpv7.lib 
 INFO: [HLS 200-100] Execute         source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/xilinx_hp.lib 
 INFO: [HLS 200-100] Command         ap_source returned 0; 0 sec.
-INFO: [HLS 200-100] Command       ap_source returned 0; 0 sec.
+INFO: [HLS 200-100] Command       ap_source returned 0; 0.01 sec.
 INFO: [HLS 200-100] Execute       source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/xilinx_fpv.hlp 
 INFO: [HLS 200-100] Execute         source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/xilinx.hlp 
 INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/target_info.tcl 
@@ -112,11 +112,11 @@ INFO: [HLS 200-100] Execute             source /opt/Xilinx/Vivado_HLS/2017.2/com
 INFO: [HLS 200-100] Command             ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Execute             source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/interface/saxilite.hlp 
 INFO: [HLS 200-100] Command             ap_source returned 0; 0 sec.
-INFO: [HLS 200-100] Command           ap_source returned 0; 0 sec.
+INFO: [HLS 200-100] Command           ap_source returned 0; 0.01 sec.
 INFO: [HLS 200-100] Execute           source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/common/dsp48.hlp 
 INFO: [HLS 200-100] Command           ap_source returned 0; 0 sec.
-INFO: [HLS 200-100] Command         ap_source returned 0; 0 sec.
-INFO: [HLS 200-100] Command       ap_source returned 0; 0 sec.
+INFO: [HLS 200-100] Command         ap_source returned 0; 0.01 sec.
+INFO: [HLS 200-100] Command       ap_source returned 0; 0.01 sec.
 INFO: [HLS 200-100] Execute       source /opt/Xilinx/Vivado_HLS/2017.2/common/technology/xilinx/virtexu/virtexu_hp.hlp 
 INFO: [HLS 200-100] Command       ap_source returned 0; 0 sec.
 INFO: [HLS 200-100] Command     import_lib returned 0; 0.02 sec.
@@ -144,7 +144,7 @@ INFO: [HLS 200-100] Command       add_library returned 0; 0 sec.
 INFO: [HLS 200-10] Setting target device to 'xcvu095-ffvc1517-2-e'
 INFO: [HLS 200-100] Execute       get_default_platform 
 INFO: [HLS 200-100] Command       get_default_platform returned 0; 0 sec.
-INFO: [HLS 200-100] Command     set_part returned 0; 0.07 sec.
+INFO: [HLS 200-100] Command     set_part returned 0; 0.06 sec.
 INFO: [HLS 200-100] Execute     get_default_platform 
 INFO: [HLS 200-100] Command     get_default_platform returned 0; 0 sec.
 INFO: [HLS 200-100] Execute     config_chip_info -quiet -resource  {SLICE 67200}  {LUT 537600}    {FF 1075200}  {DSP48E 768}   {BRAM 3456}  
@@ -268,10 +268,10 @@ INFO: [HLS 200-100] Command     is_encrypted returned 0; 0 sec.
 INFO: [HLS 200-100] Execute     is_xip /home/koernerja/Desktop/ece1373_project_seizure/data/tensorflow_data/states_series.txt 
 INFO: [HLS 200-100] Command     is_xip returned 0; 0 sec.
 INFO: [HLS 200-100] Execute     source run_sim.tcl 
-INFO: [HLS 200-100] Command     ap_source returned 0; 16.16 sec.
+INFO: [HLS 200-100] Command     ap_source returned 0; 14.72 sec.
 INFO: [SIM 211-1] CSim done with 0 errors.
 INFO: [SIM 211-3] *************** CSIM finish ***************
-INFO: [HLS 200-100] Command   csim_design returned 0; 122.03 sec.
-INFO: [HLS 200-100] Command ap_source returned 0; 122.32 sec.
+INFO: [HLS 200-100] Command   csim_design returned 0; 19.1 sec.
+INFO: [HLS 200-100] Command ap_source returned 0; 19.39 sec.
 INFO: [HLS 200-100] Execute cleanup_all 
-INFO: [HLS 200-100] Command cleanup_all returned 0; 0 sec.
+INFO: [HLS 200-100] Command cleanup_all returned 0; 0.01 sec.

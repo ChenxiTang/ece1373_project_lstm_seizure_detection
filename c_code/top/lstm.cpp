@@ -142,13 +142,16 @@ void lstm(dataType * mem,        // global memory pointer
     		printf("C %f\n",mem[h_t_offset/sizeof(dataType)+jj]);
 	*/
     //calculating output
+    //output_offset+i*sizeof(dataType)
+    //
     mv_output(mem, h_t_offset, W_output_offset, mul_W_ht_offset);
-    /*
-    if (i < 3){
-    float temp = mem[mul_W_ht_offset/sizeof(dataType)] + mem[b_output_offset/sizeof(dataType)];
-    printf("output %f\n", temp);
-    }
-    */
+    ///*
+    //if (i < 3){
+    //float temp = mem[mul_W_ht_offset/sizeof(dataType)] + mem[b_output_offset/sizeof(dataType)];
+    //mem[output_offset/sizeof(dataType)+i] = temp;
+    //printf("output %f\n", temp);
+    //}
+    //*/
     ElemWiseVecAdd_single(mem, mul_W_ht_offset, b_output_offset, sum_Wht_bias);
 	ElemWiseSigmoid_single(mem, sum_Wht_bias, output_offset+i*sizeof(dataType));
 
