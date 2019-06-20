@@ -91,7 +91,7 @@ int main(){
     
     //printf(fileDir+"x_test_se.txt");
 
-    inFile.open("../../data/tensorflow_data/x_test_se.txt");
+    inFile.open("x_test_se.txt");
     if (!inFile)
         printf("Unable to open file\n");
     float temp;
@@ -267,12 +267,12 @@ int main(){
     printf("compare %f:\n", golden_output[0]);
     printf("compare %f:\n", golden_output[1]);
     printf("compare %f:\n", golden_output[2]);
-    /*
-    for (int i = size-n; i < size-n + 3; i++){
+
+    for (int i = size-n; i < size-n + 100; i++){
         if (golden_output[i-size+n] != input[i])
             printf("error %d %f %f\n", i, golden_output[i-size+n], input[i]);
     }
-    */
+
     return 0;
 }
 

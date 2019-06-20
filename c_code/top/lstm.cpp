@@ -129,7 +129,7 @@ void lstm(dataType * mem,            // global memory pointer
 	//cpy data for Ctilda gate
 	memcpy(WhcBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+22400), 64*64*sizeof(dataType));
 	memcpy(WxcBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+22400+64*64), 64*110*sizeof(dataType));
-	memcpy(bcBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+22400+64+64*64+64*110), 64*1*sizeof(dataType));
+	memcpy(bcBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+22400+64*64+64*110), 64*1*sizeof(dataType));
 
 	//cpy data for Ot gate
 	memcpy(WhoBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+33600), 64*64*sizeof(dataType));
