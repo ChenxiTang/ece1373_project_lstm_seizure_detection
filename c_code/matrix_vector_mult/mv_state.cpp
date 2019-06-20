@@ -24,13 +24,13 @@ void mv_state(
 
   for (int row=0; row<64; row++)
 
-#pragma HLS UNROLL
+//#pragma HLS UNROLL
  {
     // Set bias
     dataType output_element = 0;
     // Columns
     for (int col = 0; col < 64; col++){
-#pragma HLS UNROLL
+//#pragma HLS UNROLL
      output_element += input1[row*64 + col]*input2[col];
      }
      // Write output

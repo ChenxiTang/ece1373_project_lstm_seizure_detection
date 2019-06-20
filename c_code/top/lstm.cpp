@@ -17,17 +17,19 @@
 
 typedef float dataType;
 
+#define in 61440
+
 void lstm(dataType * mem,            // global memory pointer
 		int input_offset,       // offset of inputs
-        int output_offset      // offset of outputs
-		){
+		int output_offset      // offset of outputs
+){
 
 	// Global memory interface
-	#pragma HLS INTERFACE m_axi port=mem depth=2147483648
+#pragma HLS INTERFACE m_axi port=mem depth=2147483648
 	// Bind all control ports to a single bundle
-	#pragma HLS INTERFACE s_axilite port=input_offset
-	#pragma HLS INTERFACE s_axilite port=output_offset
-    #pragma HLS INTERFACE s_axilite port=return bundle=CTRL_BUS
+#pragma HLS INTERFACE s_axilite port=input_offset
+#pragma HLS INTERFACE s_axilite port=output_offset
+#pragma HLS INTERFACE s_axilite port=return bundle=CTRL_BUS
 
 	//Weights and biases offset
 	int Wf_h_offset = input_offset + 64*1*sizeof(dataType);
@@ -48,148 +50,146 @@ void lstm(dataType * mem,            // global memory pointer
 
 	int bias_output_offset = bo_offset + 64*1*sizeof(bo_offset);
 
-	//Intermediate values' offset
-	int C_tmin1_offset = bias_output_offset + 64*1*sizeof(dataType);
-	int h_tmin1_offset = C_tmin1_offset + 64*1*sizeof(dataType);
-	int f_t_offset = h_tmin1_offset + 64*1*sizeof(dataType);
-	int i_t_offset = f_t_offset + 64*1*sizeof(dataType);
-	int C_tilda_offset = i_t_offset + 64*1*sizeof(dataType);
-	int C_t_offset = C_tilda_offset + 64*1*sizeof(dataType);
-	int O_t_offset = C_t_offset + 64*1*sizeof(dataType);
-	int h_t_offset = O_t_offset + 64*1*sizeof(dataType);
-
-	//Calculated values
-	int mul_wf_h_offset = h_t_offset + 64*1*sizeof(dataType);
-	int mul_wf_x_offset = mul_wf_h_offset + 64*1*sizeof(dataType);
-	int sum_wfh_wfx_bf = mul_wf_x_offset + 64*1*sizeof(dataType);
-
-	int mul_wi_h_offset = h_t_offset + 64*1*sizeof(dataType);
-	int mul_wi_x_offset = mul_wi_h_offset + 64*1*sizeof(dataType);
-	int sum_wih_wix_bi = mul_wi_x_offset + 64*1*sizeof(dataType);
-
-	int mul_wc_h_offset = h_t_offset + 64*1*sizeof(dataType);
-	int mul_wc_x_offset = mul_wc_h_offset + 64*1*sizeof(dataType);
-	int sum_wch_wcx_bc = mul_wc_x_offset + 64*1*sizeof(dataType);
-
-	int mul_wo_h_offset = h_t_offset + 64*1*sizeof(dataType);
-	int mul_wo_x_offset = mul_wo_h_offset + 64*1*sizeof(dataType);
-	int sum_woh_wox_bo = mul_wo_x_offset + 64*1*sizeof(dataType);
-
-	int mul_ft_ctmin1_offset = sum_woh_wox_bo + 64*1*sizeof(dataType);
-	int mul_it_ctilda_offset = mul_ft_ctmin1_offset + 64*1*sizeof(dataType);
-	int tanh_ct_offset = mul_it_ctilda_offset + 64*1*sizeof(dataType);
-
 
 	//local variables
 	dataType inputBRAM[110];
-#pragma HLS ARRAY_PARTITION variable=inputBRAM complete dim=1
-	dataType WhBRAM[64*64];
-#pragma HLS ARRAY_PARTITION variable=WhBRAM complete dim=1
-	dataType WxBRAM[64*110];
-#pragma HLS ARRAY_PARTITION variable=WxBRAM complete dim=1
-	dataType bBRAM[64];
-#pragma HLS ARRAY_PARTITION variable=bBRAM complete dim=1
+	//#pragma HLS ARRAY_PARTITION variable=inputBRAM complete dim=1
+	dataType WhfBRAM[64*64];
+	//#pragma HLS ARRAY_PARTITION variable=WhfBRAM complete dim=1
+	dataType WxfBRAM[64*110];
+	//#pragma HLS ARRAY_PARTITION variable=WxfBRAM complete dim=1
+	dataType bfBRAM[64];
+	//#pragma HLS ARRAY_PARTITION variable=bfBRAM complete dim=1
+
+	dataType WhiBRAM[64*64];
+	//#pragma HLS ARRAY_PARTITION variable=WhiBRAM complete dim=1
+	dataType WxiBRAM[64*110];
+	//#pragma HLS ARRAY_PARTITION variable=WxiBRAM complete dim=1
+	dataType biBRAM[64];
+	//#pragma HLS ARRAY_PARTITION variable=biBRAM complete dim=1
+	dataType WhcBRAM[64*64];
+	//#pragma HLS ARRAY_PARTITION variable=WhcBRAM complete dim=1
+	dataType WxcBRAM[64*110];
+	//#pragma HLS ARRAY_PARTITION variable=WxcBRAM complete dim=1
+	dataType bcBRAM[64];
+	//#pragma HLS ARRAY_PARTITION variable=bcBRAM complete dim=1
+	dataType WhoBRAM[64*64];
+	//#pragma HLS ARRAY_PARTITION variable=WhoBRAM complete dim=1
+	dataType WxoBRAM[64*110];
+	//#pragma HLS ARRAY_PARTITION variable=WxoBRAM complete dim=1
+	dataType boBRAM[64];
+	//#pragma HLS ARRAY_PARTITION variable=boBRAM complete dim=1
+
 
 	dataType h_tmin1[64] = {0};
-#pragma HLS ARRAY_PARTITION variable=h_tmin1 complete dim=1
+	//#pragma HLS ARRAY_PARTITION variable=h_tmin1 complete dim=1
 	dataType C_tmin1[64] = {0};
-#pragma HLS ARRAY_PARTITION variable=C_tmin1 complete dim=1
+	//#pragma HLS ARRAY_PARTITION variable=C_tmin1 complete dim=1
 	dataType mul_w_h[64];
-#pragma HLS ARRAY_PARTITION variable=mul_w_h complete dim=1
+	//#pragma HLS ARRAY_PARTITION variable=mul_w_h complete dim=1
 	dataType mul_w_x[64];
-#pragma HLS ARRAY_PARTITION variable=mul_w_x complete dim=1
+	//#pragma HLS ARRAY_PARTITION variable=mul_w_x complete dim=1
 	dataType sum_wh_wx_b[64];
-#pragma HLS ARRAY_PARTITION variable=sum_wh_wx_b complete dim=1
+	//#pragma HLS ARRAY_PARTITION variable=sum_wh_wx_b complete dim=1
 	dataType ftBRAM[64];
-#pragma HLS ARRAY_PARTITION variable=ftBRAM complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=ftBRAM complete dim=1
 	dataType itBRAM[64];
-#pragma HLS ARRAY_PARTITION variable=itBRAM complete dim=1
+	//#pragma HLS ARRAY_PARTITION variable=itBRAM complete dim=1
 	dataType CtildaBRAM[64];
-#pragma HLS ARRAY_PARTITION variable=CtildaBRAM complete dim=1
+	//#pragma HLS ARRAY_PARTITION variable=CtildaBRAM complete dim=1
 	dataType OtBRAM[64];
-#pragma HLS ARRAY_PARTITION variable=OtBRAM complete dim=1
+	//#pragma HLS ARRAY_PARTITION variable=OtBRAM complete dim=1
 
 	dataType mul_ft_ctmin1[64];
-#pragma HLS ARRAY_PARTITION variable=mul_ft_ctmin1 complete dim=1
+	//#pragma HLS ARRAY_PARTITION variable=mul_ft_ctmin1 complete dim=1
 	dataType mul_it_ctilda[64];
-#pragma HLS ARRAY_PARTITION variable=mul_it_ctilda complete dim=1
+	//#pragma HLS ARRAY_PARTITION variable=mul_it_ctilda complete dim=1
 	dataType CtBRAM[64];
-#pragma HLS ARRAY_PARTITION variable=CtBRAM complete dim=1
+	//#pragma HLS ARRAY_PARTITION variable=CtBRAM complete dim=1
 	dataType tanh_ct[64];
-#pragma HLS ARRAY_PARTITION variable=tanh_ct complete dim=1
+	//#pragma HLS ARRAY_PARTITION variable=tanh_ct complete dim=1
 	dataType htBRAM[64];
-#pragma HLS ARRAY_PARTITION variable=htBRAM complete dim=1
-	dataType bias_output[64];
-#pragma HLS ARRAY_PARTITION variable=bias_output complete dim=1
-	dataType outputBRAM;
+	//#pragma HLS ARRAY_PARTITION variable=htBRAM complete dim=1
+	dataType wgt_output[64];
+	//#pragma HLS ARRAY_PARTITION variable=wgt_output complete dim=1
+	dataType bias_output;
 
-	//copy the input values to local BRAMs
-	memcpy(inputBRAM, (const dataType*) (mem+input_offset/sizeof(dataType)), 64*sizeof(dataType));
+	dataType outputBRAM,sig_out;
 
 	//cpy data for forget gate
-	memcpy(WhBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+64), 64*64*sizeof(dataType));
-	memcpy(WxBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+64+64*64), 64*110*sizeof(dataType));
-	memcpy(bBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+64+64*64+64*110), 64*1*sizeof(dataType));
-
-	//calculating f_t
-	mv_state(WhBRAM, h_tmin1, mul_w_h);
-	mv_input(WxBRAM, inputBRAM, mul_w_x);
-    ElemWiseVecAdd3(mul_w_h, mul_w_x, bBRAM, sum_wh_wx_b);
-    ElemWiseSigmoid(sum_wh_wx_b, ftBRAM);
+	memcpy(WhfBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110), 64*64*sizeof(dataType));
+	memcpy(WxfBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+64*64), 64*110*sizeof(dataType));
+	memcpy(bfBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+64*64+64*110), 64*1*sizeof(dataType));
 
 	//cpy data for it gate
-	memcpy(WhBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+11200+64), 64*64*sizeof(dataType));
-	memcpy(WxBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+11200+64+64*64), 64*110*sizeof(dataType));
-	memcpy(bBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+11200+64+64*64+64*110), 64*1*sizeof(dataType));
-
-
-    //calculating it
-	mv_state(WhBRAM, h_tmin1, mul_w_h);
-	mv_input(WxBRAM, inputBRAM, mul_w_x);
-    ElemWiseVecAdd3(mul_w_h, mul_w_x, bBRAM, sum_wh_wx_b);
-    ElemWiseSigmoid(sum_wh_wx_b, itBRAM);
+	memcpy(WhiBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+11200), 64*64*sizeof(dataType));
+	memcpy(WxiBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+11200+64*64), 64*110*sizeof(dataType));
+	memcpy(biBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+11200+64*64+64*110), 64*1*sizeof(dataType));
 
 	//cpy data for Ctilda gate
-	memcpy(WhBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+22400+64), 64*64*sizeof(dataType));
-	memcpy(WxBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+22400+64+64*64), 64*110*sizeof(dataType));
-	memcpy(bBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+22400+64+64*64+64*110), 64*1*sizeof(dataType));
+	memcpy(WhcBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+22400), 64*64*sizeof(dataType));
+	memcpy(WxcBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+22400+64*64), 64*110*sizeof(dataType));
+	memcpy(bcBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+22400+64+64*64+64*110), 64*1*sizeof(dataType));
 
-    //calculating Ctilda
-	mv_state(WhBRAM, h_tmin1, mul_w_h);
-	mv_input(WxBRAM, inputBRAM, mul_w_x);
-    ElemWiseVecAdd3(mul_w_h, mul_w_x, bBRAM, sum_wh_wx_b);
-    ElemWiseTanh(sum_wh_wx_b, CtildaBRAM);
+	//cpy data for Ot gate
+	memcpy(WhoBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+33600), 64*64*sizeof(dataType));
+	memcpy(WxoBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+33600+64*64), 64*110*sizeof(dataType));
+	memcpy(boBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+33600+64*64+64*110), 64*1*sizeof(dataType));
 
-	//cpy data for Ctilda gate
-	memcpy(WhBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+33600+64), 64*64*sizeof(dataType));
-	memcpy(WxBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+33600+64+64*64), 64*110*sizeof(dataType));
-	memcpy(bBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+33600+64+64*64+64*110), 64*1*sizeof(dataType));
+	memcpy(wgt_output, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110 + 44800), 64*1*sizeof(dataType));
+	bias_output = mem[input_offset/sizeof(dataType)+ in*110 + 44800 + 64];
 
-    //calculating Ot
-	mv_state(WhBRAM, h_tmin1, mul_w_h);
-	mv_input(WxBRAM, inputBRAM, mul_w_x);
-    ElemWiseVecAdd3(mul_w_h, mul_w_x, bBRAM, sum_wh_wx_b);
-    ElemWiseSigmoid(sum_wh_wx_b, OtBRAM);
 
-    //calculating C_t
-    ElemWiseVecMul(ftBRAM, C_tmin1, mul_ft_ctmin1);
-    ElemWiseVecMul(itBRAM, CtildaBRAM, mul_it_ctilda);
-    ElemWiseVecAdd(mul_ft_ctmin1, mul_it_ctilda, CtBRAM);
+	for(int i =0; i < in;i++){
+		//copy the input values to local BRAMs
+		memcpy(inputBRAM, (const dataType*) (mem+input_offset/sizeof(dataType))+ i*110, 110*sizeof(dataType));
 
-    //calculating h_t
-    ElemWiseTanh(CtBRAM, tanh_ct);
-    ElemWiseVecMul(OtBRAM, tanh_ct, htBRAM);
+		//calculating f_t
+		mv_state(WhfBRAM, h_tmin1, mul_w_h);
+		mv_input(WxfBRAM, inputBRAM, mul_w_x);
+		ElemWiseVecAdd3(mul_w_h, mul_w_x, bfBRAM, sum_wh_wx_b);
+		ElemWiseSigmoid(sum_wh_wx_b, ftBRAM);
 
-    memcpy(bias_output, (const dataType*)(mem+input_offset/sizeof(dataType)+44800+64), 64*1*sizeof(dataType));
+		//calculating it
+		mv_state(WhiBRAM, h_tmin1, mul_w_h);
+		mv_input(WxiBRAM, inputBRAM, mul_w_x);
+		ElemWiseVecAdd3(mul_w_h, mul_w_x, biBRAM, sum_wh_wx_b);
+		ElemWiseSigmoid(sum_wh_wx_b, itBRAM);
 
-    //calculating output
-    mv_output(htBRAM, bias_output, outputBRAM);
-    mem[output_offset/sizeof(dataType)] = outputBRAM;
+		//calculating Ctilda
+		mv_state(WhcBRAM, h_tmin1, mul_w_h);
+		mv_input(WxcBRAM, inputBRAM, mul_w_x);
+		ElemWiseVecAdd3(mul_w_h, mul_w_x, bcBRAM, sum_wh_wx_b);
+		ElemWiseTanh(sum_wh_wx_b, CtildaBRAM);
 
-    for(int i=0; i<64; i++){
-#pragma HLS UNROLL
-        h_tmin1[i] = htBRAM[i];
-        C_tmin1[i] = CtBRAM[i];
-    }
+
+
+		//calculating Ot
+		mv_state(WhoBRAM, h_tmin1, mul_w_h);
+		mv_input(WxoBRAM, inputBRAM, mul_w_x);
+		ElemWiseVecAdd3(mul_w_h, mul_w_x, boBRAM, sum_wh_wx_b);
+		ElemWiseSigmoid(sum_wh_wx_b, OtBRAM);
+
+		//calculating C_t
+		ElemWiseVecMul(ftBRAM, C_tmin1, mul_ft_ctmin1);
+		ElemWiseVecMul(itBRAM, CtildaBRAM, mul_it_ctilda);
+		ElemWiseVecAdd(mul_ft_ctmin1, mul_it_ctilda, CtBRAM);
+
+		//calculating h_t
+		ElemWiseTanh(CtBRAM, tanh_ct);
+		ElemWiseVecMul(OtBRAM, tanh_ct, htBRAM);
+
+		//calculating output
+		mv_output(htBRAM, wgt_output, outputBRAM);
+		outputBRAM = outputBRAM + bias_output;
+		sigmoidSingle(outputBRAM, sig_out);
+		mem[output_offset/sizeof(dataType)+ i] = sig_out;
+
+		for(int j=0; j<64; j++){
+			//#pragma HLS UNROLL
+			h_tmin1[j] = htBRAM[j];
+			C_tmin1[j] = CtBRAM[j];
+		}
+	}
 
 }
