@@ -81,9 +81,15 @@ void lstm(dataType * mem,            // global memory pointer
 	//#pragma HLS ARRAY_PARTITION variable=boBRAM complete dim=1
 
 
-	dataType h_tmin1[64] = {0};
+	dataType h_tmin1[64];
+	for(int i =0; i<64; i++)
+		h_tmin1[i] =0;
 	//#pragma HLS ARRAY_PARTITION variable=h_tmin1 complete dim=1
-	dataType C_tmin1[64] = {0};
+
+	dataType C_tmin1[64];
+	for(int i =0; i<64; i++)
+		C_tmin1[i] =0;
+
 	//#pragma HLS ARRAY_PARTITION variable=C_tmin1 complete dim=1
 	dataType mul_w_h[64];
 	//#pragma HLS ARRAY_PARTITION variable=mul_w_h complete dim=1
@@ -116,7 +122,7 @@ void lstm(dataType * mem,            // global memory pointer
 
 	dataType outputBRAM,sig_out;
 
-	//cpy data for forget gate
+	//Copy data for forget gate
 	memcpy(WhfBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110), 64*64*sizeof(dataType));
 	memcpy(WxfBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+64*64), 64*110*sizeof(dataType));
 	memcpy(bfBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+64*64+64*110), 64*1*sizeof(dataType));
