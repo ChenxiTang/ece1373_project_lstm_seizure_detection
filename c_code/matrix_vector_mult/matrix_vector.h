@@ -11,7 +11,7 @@ void mv_input(
 void mv_output(
                dataType input1[],       // offset of inputs
 			   dataType input2[],       // offset of input B
-               dataType outputs      // offset of outputs
+               dataType &outputs      // offset of outputs
 );
 void mv_state(
               dataType input1[],       // offset of inputs
