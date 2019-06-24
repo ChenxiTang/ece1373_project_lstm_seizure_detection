@@ -25,7 +25,7 @@ void mv_output(
 float output_element = 0;
 // Columns
 for (int col = 0; col < 64; col++){
-#pragma HLS UNROLL
+//#pragma HLS UNROLL
 	output_element += input1[col]*input2[col];
 }
 // Write output

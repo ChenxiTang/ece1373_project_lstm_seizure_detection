@@ -31,25 +31,6 @@ void lstm(dataType * mem,            // global memory pointer
 #pragma HLS INTERFACE s_axilite port=output_offset
 #pragma HLS INTERFACE s_axilite port=return bundle=CTRL_BUS
 
-	//Weights and biases offset
-	int Wf_h_offset = input_offset + 64*1*sizeof(dataType);
-	int Wf_x_offset = Wf_h_offset + 64*64*sizeof(dataType);
-	int bf_offset = Wf_x_offset + 64*110*sizeof(dataType);
-
-	int Wi_h_offset = bf_offset + 64*1*sizeof(dataType);
-	int Wi_x_offset = Wi_h_offset + 64*64*sizeof(dataType);
-	int bi_offset =  Wi_x_offset + 64*110*sizeof(dataType);
-
-	int Wc_h_offset = bi_offset + 64*1*sizeof(dataType);
-	int Wc_x_offset = Wc_h_offset + 64*64*sizeof(dataType);
-	int bc_offset =  Wc_x_offset + 64*110*sizeof(dataType);
-
-	int Wo_h_offset = bc_offset + 64*1*sizeof(dataType);
-	int Wo_x_offset = Wo_h_offset + 64*64*sizeof(dataType);
-	int bo_offset =  Wo_x_offset + 64*110*sizeof(dataType);
-
-	int bias_output_offset = bo_offset + 64*1*sizeof(bo_offset);
-
 
 	//local variables
 	dataType inputBRAM[110];
@@ -81,14 +62,14 @@ void lstm(dataType * mem,            // global memory pointer
 	//#pragma HLS ARRAY_PARTITION variable=boBRAM complete dim=1
 
 
-	dataType h_tmin1[64];
-	for(int i =0; i<64; i++)
-		h_tmin1[i] =0;
+	dataType h_tmin1[64]={0};
+	//for(int i =0; i<64; i++)
+		//h_tmin1[i] =0;
 	//#pragma HLS ARRAY_PARTITION variable=h_tmin1 complete dim=1
 
-	dataType C_tmin1[64];
-	for(int i =0; i<64; i++)
-		C_tmin1[i] =0;
+	dataType C_tmin1[64]={0};
+	//for(int i =0; i<64; i++)
+	//	C_tmin1[i] =0;
 
 	//#pragma HLS ARRAY_PARTITION variable=C_tmin1 complete dim=1
 	dataType mul_w_h[64];
@@ -98,7 +79,7 @@ void lstm(dataType * mem,            // global memory pointer
 	dataType sum_wh_wx_b[64];
 	//#pragma HLS ARRAY_PARTITION variable=sum_wh_wx_b complete dim=1
 	dataType ftBRAM[64];
-	#pragma HLS ARRAY_PARTITION variable=ftBRAM complete dim=1
+	//#pragma HLS ARRAY_PARTITION variable=ftBRAM complete dim=1
 	dataType itBRAM[64];
 	//#pragma HLS ARRAY_PARTITION variable=itBRAM complete dim=1
 	dataType CtildaBRAM[64];
@@ -122,28 +103,32 @@ void lstm(dataType * mem,            // global memory pointer
 
 	dataType outputBRAM,sig_out;
 
+	int temp = input_offset/sizeof(dataType);
+	int temp_offset = temp + in*110;
+	//int temp_offset = mem + temp_elem;
+
 	//Copy data for forget gate
-	memcpy(WhfBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110), 64*64*sizeof(dataType));
-	memcpy(WxfBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+64*64), 64*110*sizeof(dataType));
-	memcpy(bfBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+64*64+64*110), 64*1*sizeof(dataType));
+	memcpy(WhfBRAM, (const dataType*)(mem+temp_offset), 4096*sizeof(dataType));
+	memcpy(WxfBRAM, (const dataType*)(mem+temp_offset+4096), 7040*sizeof(dataType));
+	memcpy(bfBRAM, (const dataType*)(mem+temp_offset+11136), 64*sizeof(dataType));
 
 	//cpy data for it gate
-	memcpy(WhiBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+11200), 64*64*sizeof(dataType));
-	memcpy(WxiBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+11200+64*64), 64*110*sizeof(dataType));
-	memcpy(biBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+11200+64*64+64*110), 64*1*sizeof(dataType));
+	memcpy(WhiBRAM, (const dataType*)(mem+temp_offset+11200), 4096*sizeof(dataType));
+	memcpy(WxiBRAM, (const dataType*)(mem+temp_offset+15296), 7040*sizeof(dataType));
+	memcpy(biBRAM, (const dataType*)(mem+temp_offset+22336), 64*sizeof(dataType));
 
 	//cpy data for Ctilda gate
-	memcpy(WhcBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+22400), 64*64*sizeof(dataType));
-	memcpy(WxcBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+22400+64*64), 64*110*sizeof(dataType));
-	memcpy(bcBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+22400+64*64+64*110), 64*1*sizeof(dataType));
+	memcpy(WhcBRAM, (const dataType*)(mem+temp_offset+22400), 4096*sizeof(dataType));
+	memcpy(WxcBRAM, (const dataType*)(mem+temp_offset+26496), 7040*sizeof(dataType));
+	memcpy(bcBRAM, (const dataType*)(mem+temp_offset+33536), 64*sizeof(dataType));
 
 	//cpy data for Ot gate
-	memcpy(WhoBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+33600), 64*64*sizeof(dataType));
-	memcpy(WxoBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+33600+64*64), 64*110*sizeof(dataType));
-	memcpy(boBRAM, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110+33600+64*64+64*110), 64*1*sizeof(dataType));
+	memcpy(WhoBRAM, (const dataType*)(mem+temp_offset+33600), 4096*sizeof(dataType));
+	memcpy(WxoBRAM, (const dataType*)(mem+temp_offset+37696), 7040*sizeof(dataType));
+	memcpy(boBRAM, (const dataType*)(mem+temp_offset+44736), 64*sizeof(dataType));
 
-	memcpy(wgt_output, (const dataType*)(mem+input_offset/sizeof(dataType)+in*110 + 44800), 64*1*sizeof(dataType));
-	bias_output = mem[input_offset/sizeof(dataType)+ in*110 + 44800 + 64];
+	memcpy(wgt_output, (const dataType*)(mem+temp_offset + 44800), 64*sizeof(dataType));
+	bias_output = mem[temp_offset + 44864];
 
 
 	for(int i =0; i < in;i++){
