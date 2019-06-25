@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <hls_math.h>
 #include <vector>
 #include <cassert>
 #include "ElemWiseTanh.h"
@@ -21,14 +22,14 @@ void ElemWiseTanh(dataType * mem,            // global memory pointer
 
 
 	for(int i = 0; i < 64; i++){
-		//out[i] = tanh(in[i]);
+		mem[output_offset/sizeof(dataType)+i] = hls::tanh(mem[input_offset/sizeof(dataType)+i]);
 		//Htanh
-		if(mem[input_offset/sizeof(dataType)+i] < -1)
+		/*if(mem[input_offset/sizeof(dataType)+i] < -1)
 			mem[output_offset/sizeof(dataType)+i] = -1;
 		else if(mem[input_offset/sizeof(dataType)+i] > 1)
 			mem[output_offset/sizeof(dataType)+i] = 1;
 		else mem[output_offset/sizeof(dataType)+i] = mem[input_offset/sizeof(dataType)+i];
-
+*/
 
 		//Ptanh
 		/*
