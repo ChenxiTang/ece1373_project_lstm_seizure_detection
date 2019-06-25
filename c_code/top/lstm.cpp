@@ -42,21 +42,21 @@ void lstm(dataType * mem,            // global memory pointer
 	dataType bfBRAM[64];
 	//#pragma HLS ARRAY_PARTITION variable=bfBRAM complete dim=1
 
-	dataType WhiBRAM[64*64];
+	dataType WhiBRAM[4096];
 	//#pragma HLS ARRAY_PARTITION variable=WhiBRAM complete dim=1
-	dataType WxiBRAM[64*110];
+	dataType WxiBRAM[7040];
 	//#pragma HLS ARRAY_PARTITION variable=WxiBRAM complete dim=1
 	dataType biBRAM[64];
 	//#pragma HLS ARRAY_PARTITION variable=biBRAM complete dim=1
-	dataType WhcBRAM[64*64];
+	dataType WhcBRAM[4096];
 	//#pragma HLS ARRAY_PARTITION variable=WhcBRAM complete dim=1
-	dataType WxcBRAM[64*110];
+	dataType WxcBRAM[7040];
 	//#pragma HLS ARRAY_PARTITION variable=WxcBRAM complete dim=1
 	dataType bcBRAM[64];
 	//#pragma HLS ARRAY_PARTITION variable=bcBRAM complete dim=1
-	dataType WhoBRAM[64*64];
+	dataType WhoBRAM[4096];
 	//#pragma HLS ARRAY_PARTITION variable=WhoBRAM complete dim=1
-	dataType WxoBRAM[64*110];
+	dataType WxoBRAM[7040];
 	//#pragma HLS ARRAY_PARTITION variable=WxoBRAM complete dim=1
 	dataType boBRAM[64];
 	//#pragma HLS ARRAY_PARTITION variable=boBRAM complete dim=1
@@ -177,7 +177,7 @@ void lstm(dataType * mem,            // global memory pointer
 		mem[output_offset/sizeof(dataType)+ i] = sig_out;
 
 		for(int j=0; j<64; j++){
-			//#pragma HLS UNROLL
+			#pragma HLS UNROLL
 			h_tmin1[j] = htBRAM[j];
 			C_tmin1[j] = CtBRAM[j];
 		}
