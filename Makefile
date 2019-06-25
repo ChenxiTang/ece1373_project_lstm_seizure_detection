@@ -1,4 +1,4 @@
-all_hls: ElemWiseTanh_hls ElemWiseSigmoid_hls ElemWiseVecAdd_hls ElemWiseVecMul_hls mv_input_hls mv_output_hls mv_state_hls
+all_hls: ElemWiseTanh_hls ElemWiseSigmoid_hls ElemWiseVecAdd_hls ElemWiseVecMul_hls mv_input_hls mv_output_hls mv_state_hls fir_top_hls
 
 
 ElemWiseTanh_hls: 
@@ -21,6 +21,9 @@ mv_output_hls:
 
 mv_state_hls:
 	vivado_hls hls_proj/mv_state_hls.tcl
+
+fir_top_hls:
+	vivado_hls hls_proj/fir_top_hls.tcl
 
 prj: all_hls
 	vivado -mode batch -source TCL/flow.tcl
