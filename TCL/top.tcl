@@ -9,8 +9,7 @@ create_project $designName $dir -part xcvu095-ffvc1517-2-e -force
 set_property  ip_repo_paths  {IP_REPO/ocl_ips\
 IP_REPO/pcie_status\
 IP_REPO/new_PCIe_status\
-hls_proj/sig_band_proj/solution1/impl/ip\
-hls_proj/ph_proj/solution1/impl/ip \
+hls_proj/LSTM_proj/solution1/impl/ip\
 hls_proj/ElemWiseSigmoid_proj/solution1/impl/ip\
 hls_proj/ElemWiseTanh_proj/solution1/impl/ip\
 hls_proj/ElemWiseVecAdd_proj/solution1/impl/ip\
@@ -18,7 +17,7 @@ hls_proj/ElemWiseVecMul_proj/solution1/impl/ip\
 hls_proj/mv_input_proj/solution1/impl/ip\
 hls_proj/mv_output_proj/solution1/impl/ip\
 hls_proj/mv_state_proj/solution1/impl/ip\
-hls_proj/fir_top/solution1/impl/ip} [current_project]
+hls_proj/FIR_top_proj/solution1/impl/ip} [current_project]
 
 add_files -fileset constrs_1 -norecurse { \
 support/bitstream.xdc  \
@@ -34,10 +33,11 @@ update_ip_catalog
 
 source TCL/fir_mb_test.tcl
 
-start_gui 
+make_wrapper -files [get_files vivado_designs/test_design2/prj_design2.srcs/sources_1/bd/design_1/design_1.bd] -top
+add_files -norecurse vivado_designs/test_design2/prj_design2.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.v
+update_compile_order -fileset sources_1
 
-#start_gui
-#open_bd_design {$dir/$designName.srcs/sources_1/bd/design_1/design_1.bd}
+
 
 
 
