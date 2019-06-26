@@ -14,21 +14,24 @@ using namespace std;
 typedef float dataType;
 typedef int add_type;
 
-void fir_5_bands(dataType* mem, add_type input_offset, add_type output_offset);
 
 void channel_1_band_5(
 	dataType* mem,
 	add_type input_offset,
 	add_type output_offset,
-	add_type channel
+	add_type channel,
+	add_type index,
+	dataType* weights1,
+	dataType* weights2,
+	dataType* weights3,
+	dataType* weights4,
+	dataType* weights5,
+	dataType* inputs
 );
 
 void fir_top(dataType* mem,
-	add_type input_offset,
-	add_type output_offset);
-
-void sig_band_energy_gen(dataType* mem, add_type input_offset,
-	add_type output_offset);
+	add_type input_add,
+	add_type output_add);
 
 
 #endif
