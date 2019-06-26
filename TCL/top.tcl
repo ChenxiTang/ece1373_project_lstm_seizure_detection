@@ -17,7 +17,8 @@ hls_proj/ElemWiseVecAdd_proj/solution1/impl/ip\
 hls_proj/ElemWiseVecMul_proj/solution1/impl/ip\
 hls_proj/mv_input_proj/solution1/impl/ip\
 hls_proj/mv_output_proj/solution1/impl/ip\
-hls_proj/mv_state_proj/solution1/impl/ip} [current_project]
+hls_proj/mv_state_proj/solution1/impl/ip\
+hls_proj/fir_top/solution1/impl/ip} [current_project]
 
 add_files -fileset constrs_1 -norecurse { \
 support/bitstream.xdc  \
@@ -31,9 +32,9 @@ support/pcie_constr.xdc}
 
 update_ip_catalog
 
-source TCL/corrected_xdma_fir_mvs_dummies_v1.tcl
+source TCL/fir_mb_test.tcl
 
-validate_bd_design
+start_gui 
 
 #start_gui
 #open_bd_design {$dir/$designName.srcs/sources_1/bd/design_1/design_1.bd}

@@ -8,9 +8,16 @@
 #ifndef SRC_ADD_H_
 #define SRC_ADD_H_
 
+#include "xparameters.h"
+#include "xlstm.h"
+#include "PCIE_Status.h"
+#include "xfir_top.h"
+#include "sig_band.h"
+
 #define h2c_transfer_flag PCIE_STATUS_S00_AXI_SLV_REG0_OFFSET
 #define c2h_transfer_flag PCIE_STATUS_S00_AXI_SLV_REG1_OFFSET
-#define FIR_base_add 0x00020000
-#define FIR_id XPAR_SIG_BAND_ENERGY_GEN_0_DEVICE_ID
+
+#define FIR_id XPAR_XFIR_TOP_0_DEVICE_ID
+#define LSTM_id XPAR_LSTM_0_DEVICE_ID
 
 #endif /* SRC_ADD_H_ */
