@@ -21,8 +21,12 @@ void ElemWiseVecAdd(
 	#pragma HLS INTERFACE s_axilite port=output_offset
 	#pragma HLS INTERFACE s_axilite port=return bundle=CTRL_BUS
 */
+	//dataType temp;
 		for(int i = 0; i < 64; i++){
 #pragma HLS UNROLL factor=32
+//#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+			 //temp=  input1[i] + input2[i];
+			//outputs[i] = temp;
 			outputs[i] = input1[i] + input2[i];
 		}
 }

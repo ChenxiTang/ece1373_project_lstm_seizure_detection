@@ -21,14 +21,49 @@ void mv_output(
 //int num_input = b*id*ix*iy;
 //int num_output = b*od*ox*oy;
 
+    dataType mult[64];
+#pragma HLS ARRAY_PARTITION variable=mult complete dim=1
+    dataType add1[32];
+#pragma HLS ARRAY_PARTITION variable=add1 complete dim=1
+    dataType add2[16];
+#pragma HLS ARRAY_PARTITION variable=add2 complete dim=1
+    dataType add3[8];
+#pragma HLS ARRAY_PARTITION variable=add3 complete dim=1
+    dataType add4[4];
+#pragma HLS ARRAY_PARTITION variable=add4 complete dim=1
+    dataType add5[2];
+#pragma HLS ARRAY_PARTITION variable=add5 complete dim=1
+
+
 // Set bias
 float output_element = 0;
 // Columns
 for (int col = 0; col < 64; col++){
-//#pragma HLS UNROLL
+    #pragma HLS UNROLL
+    mult[col] = input1[col]*input2[col];
+}
+
+    for (int i = 0; i < 32; i++)
+#pragma HLS UNROLL
+        add1[i] = mult[2*i] + mult[2*i+1];
+    for (int i = 0; i < 16; i++)
+#pragma HLS UNROLL
+        add2[i] = add1[2*i] + add1[2*i+1];
+    for (int i = 0; i < 8; i++)
+#pragma HLS UNROLL
+        add3[i] = add2[2*i] + add2[2*i+1];
+    for (int i = 0; i < 4; i++)
+#pragma HLS UNROLL
+        add4[i] = add3[2*i] + add3[2*i+1];
+    for (int i = 0; i < 2; i++)
+#pragma HLS UNROLL
+        add5[i] = add4[2*i] + add4[2*i+1];
+    outputs = add5[0] + add5[1];
+    /*
 	output_element += input1[col]*input2[col];
 }
 // Write output
-outputs = output_element;
+    outputs = output_element;
+     */
 }
 

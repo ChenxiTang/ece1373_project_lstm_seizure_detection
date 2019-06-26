@@ -21,18 +21,64 @@ void mv_input(
   //int num_input = b*id*ix*iy;
   //int num_output = b*od*ox*oy;
 
+
+  dataType mult[110];
+   #pragma HLS ARRAY_PARTITION variable=mult complete dim=1
+  dataType add1[55];
+    #pragma HLS ARRAY_PARTITION variable=add1 complete dim=1
+  dataType add2[28];
+    #pragma HLS ARRAY_PARTITION variable=add2 complete dim=1
+  dataType add3[14];
+    #pragma HLS ARRAY_PARTITION variable=add3 complete dim=1
+  dataType add4[7];
+    #pragma HLS ARRAY_PARTITION variable=add4 complete dim=1
+  dataType add5[4];
+    #pragma HLS ARRAY_PARTITION variable=add5 complete dim=1
+  dataType add6[2];
+    #pragma HLS ARRAY_PARTITION variable=add6 complete dim=1
+
   // rows
   for (int row=0; row<64; row++){
 //#pragma HLS UNROLL
     // Set bias
-    float output_element = 0;
+    //dataType output_element = 0;
     // Columns
     for (int col = 0; col < 110; col++){
-//#pragma HLS UNROLL
-     output_element += input1[row*110 + col]*input2[col];
+        #pragma HLS UNROLL
+        mult[col] = input1[row*110 + col]*input2[col];
+        //output_element += input1[row*110 + col]*input2[col];
      }
+
+
+    for (int i = 0; i < 55; i++)
+        #pragma HLS UNROLL
+        add1[i] = mult[2*i] + mult[2*i+1];
+    for (int i = 0; i < 27; i++)
+        #pragma HLS UNROLL
+        add2[i] = add1[2*i] + add1[2*i+1];
+    add2[27] = add1[54];
+    for (int i = 0; i < 14; i++)
+        #pragma HLS UNROLL
+        add3[i] = add2[2*i] + add2[2*i+1];
+    for (int i = 0; i < 7; i++)
+        #pragma HLS UNROLL
+        add4[i] = add3[2*i] + add3[2*i+1];
+    for (int i = 0; i < 3; i++)
+        #pragma HLS UNROLL
+        add5[i] = add4[2*i] + add4[2*i+1];
+    add5[3] = add4[6];
+    for (int i = 0; i < 2; i++)
+        #pragma HLS UNROLL
+        add6[i] = add5[2*i] + add5[2*i+1];
+    outputs[row] = add6[0] + add6[1];
      // Write output
-    outputs[row] = output_element;
+    //outputs[row] = output_element;
+     /*
+      for (int i = 0; i < 110; i++){
+          output_element += mult[i];
+      }
+      outputs[row] = output_element;
+    */
   }
 }
 

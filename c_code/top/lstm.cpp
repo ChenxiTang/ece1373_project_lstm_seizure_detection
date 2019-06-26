@@ -34,71 +34,79 @@ void lstm(dataType * mem,            // global memory pointer
 
 	//local variables
 	dataType inputBRAM[110];
-	//#pragma HLS ARRAY_PARTITION variable=inputBRAM complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=inputBRAM complete dim=1
 	dataType WhfBRAM[64*64];
-	//#pragma HLS ARRAY_PARTITION variable=WhfBRAM complete dim=1
+    #pragma HLS array_partition variable=WhfBRAM cyclic factor=64 dim=1
 	dataType WxfBRAM[64*110];
-	//#pragma HLS ARRAY_PARTITION variable=WxfBRAM complete dim=1
+    #pragma HLS array_partition variable=WxfBRAM cyclic factor=110 dim=1
 	dataType bfBRAM[64];
-	//#pragma HLS ARRAY_PARTITION variable=bfBRAM complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=bfBRAM complete dim=1
 
 	dataType WhiBRAM[4096];
-	//#pragma HLS ARRAY_PARTITION variable=WhiBRAM complete dim=1
+	#pragma HLS array_partition variable=WhiBRAM cyclic factor=64 dim=1
 	dataType WxiBRAM[7040];
-	//#pragma HLS ARRAY_PARTITION variable=WxiBRAM complete dim=1
+	#pragma HLS array_partition variable=WxfBRAM cyclic factor=110 dim=1
 	dataType biBRAM[64];
-	//#pragma HLS ARRAY_PARTITION variable=biBRAM complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=biBRAM complete dim=1
 	dataType WhcBRAM[4096];
-	//#pragma HLS ARRAY_PARTITION variable=WhcBRAM complete dim=1
+	#pragma HLS array_partition variable=WhcBRAM cyclic factor=64 dim=1
 	dataType WxcBRAM[7040];
-	//#pragma HLS ARRAY_PARTITION variable=WxcBRAM complete dim=1
+	#pragma HLS array_partition variable=WxcBRAM cyclic factor=110 dim=1
 	dataType bcBRAM[64];
-	//#pragma HLS ARRAY_PARTITION variable=bcBRAM complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=bcBRAM complete dim=1
 	dataType WhoBRAM[4096];
-	//#pragma HLS ARRAY_PARTITION variable=WhoBRAM complete dim=1
+	#pragma HLS array_partition variable=WhoBRAM cyclic factor=64 dim=1
 	dataType WxoBRAM[7040];
-	//#pragma HLS ARRAY_PARTITION variable=WxoBRAM complete dim=1
+	#pragma HLS array_partition variable=WxoBRAM cyclic factor=110 dim=1
 	dataType boBRAM[64];
-	//#pragma HLS ARRAY_PARTITION variable=boBRAM complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=boBRAM complete dim=1
 
 
 	dataType h_tmin1[64]={0};
+	#pragma HLS ARRAY_PARTITION variable=h_tmin1 complete dim=1
 	//for(int i =0; i<64; i++)
 		//h_tmin1[i] =0;
 	//#pragma HLS ARRAY_PARTITION variable=h_tmin1 complete dim=1
 
 	dataType C_tmin1[64]={0};
+	#pragma HLS ARRAY_PARTITION variable=C_tmin1 complete dim=1
 	//for(int i =0; i<64; i++)
 	//	C_tmin1[i] =0;
 
-	//#pragma HLS ARRAY_PARTITION variable=C_tmin1 complete dim=1
+
 	dataType mul_w_h[64];
-	//#pragma HLS ARRAY_PARTITION variable=mul_w_h complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=mul_w_h complete dim=1
 	dataType mul_w_x[64];
-	//#pragma HLS ARRAY_PARTITION variable=mul_w_x complete dim=1
-	dataType sum_wh_wx_b[64];
-	//#pragma HLS ARRAY_PARTITION variable=sum_wh_wx_b complete dim=1
+    #pragma HLS ARRAY_PARTITION variable=mul_w_x complete dim=1
+	dataType sum_wh_wx_b_f[64];
+    #pragma HLS ARRAY_PARTITION variable=sum_wh_wx_b_f complete dim=1
+    dataType sum_wh_wx_b_i[64];
+    #pragma HLS ARRAY_PARTITION variable=sum_wh_wx_b_i complete dim=1
+    dataType sum_wh_wx_b_c[64];
+    #pragma HLS ARRAY_PARTITION variable=sum_wh_wx_b_c complete dim=1
+    dataType sum_wh_wx_b_o[64];
+	#pragma HLS ARRAY_PARTITION variable=sum_wh_wx_b_o complete dim=1
 	dataType ftBRAM[64];
-	//#pragma HLS ARRAY_PARTITION variable=ftBRAM complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=ftBRAM complete dim=1
 	dataType itBRAM[64];
-	//#pragma HLS ARRAY_PARTITION variable=itBRAM complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=itBRAM complete dim=1
 	dataType CtildaBRAM[64];
-	//#pragma HLS ARRAY_PARTITION variable=CtildaBRAM complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=CtildaBRAM complete dim=1
 	dataType OtBRAM[64];
-	//#pragma HLS ARRAY_PARTITION variable=OtBRAM complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=OtBRAM complete dim=1
 
 	dataType mul_ft_ctmin1[64];
-	//#pragma HLS ARRAY_PARTITION variable=mul_ft_ctmin1 complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=mul_ft_ctmin1 complete dim=1
 	dataType mul_it_ctilda[64];
-	//#pragma HLS ARRAY_PARTITION variable=mul_it_ctilda complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=mul_it_ctilda complete dim=1
 	dataType CtBRAM[64];
-	//#pragma HLS ARRAY_PARTITION variable=CtBRAM complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=CtBRAM complete dim=1
 	dataType tanh_ct[64];
-	//#pragma HLS ARRAY_PARTITION variable=tanh_ct complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=tanh_ct complete dim=1
 	dataType htBRAM[64];
-	//#pragma HLS ARRAY_PARTITION variable=htBRAM complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=htBRAM complete dim=1
 	dataType wgt_output[64];
-	//#pragma HLS ARRAY_PARTITION variable=wgt_output complete dim=1
+	#pragma HLS ARRAY_PARTITION variable=wgt_output complete dim=1
 	dataType bias_output;
 
 	dataType outputBRAM,sig_out;
@@ -138,28 +146,26 @@ void lstm(dataType * mem,            // global memory pointer
 		//calculating f_t
 		mv_state(WhfBRAM, h_tmin1, mul_w_h);
 		mv_input(WxfBRAM, inputBRAM, mul_w_x);
-		ElemWiseVecAdd3(mul_w_h, mul_w_x, bfBRAM, sum_wh_wx_b);
-		ElemWiseSigmoid(sum_wh_wx_b, ftBRAM);
+		ElemWiseVecAdd3(mul_w_h, mul_w_x, bfBRAM, sum_wh_wx_b_f);
+		ElemWiseSigmoid(sum_wh_wx_b_f, ftBRAM);
 
 		//calculating it
 		mv_state(WhiBRAM, h_tmin1, mul_w_h);
 		mv_input(WxiBRAM, inputBRAM, mul_w_x);
-		ElemWiseVecAdd3(mul_w_h, mul_w_x, biBRAM, sum_wh_wx_b);
-		ElemWiseSigmoid(sum_wh_wx_b, itBRAM);
+		ElemWiseVecAdd3(mul_w_h, mul_w_x, biBRAM, sum_wh_wx_b_i);
+		ElemWiseSigmoid(sum_wh_wx_b_i, itBRAM);
 
 		//calculating Ctilda
 		mv_state(WhcBRAM, h_tmin1, mul_w_h);
 		mv_input(WxcBRAM, inputBRAM, mul_w_x);
-		ElemWiseVecAdd3(mul_w_h, mul_w_x, bcBRAM, sum_wh_wx_b);
-		ElemWiseTanh(sum_wh_wx_b, CtildaBRAM);
-
-
+		ElemWiseVecAdd3(mul_w_h, mul_w_x, bcBRAM, sum_wh_wx_b_c);
+		ElemWiseTanh(sum_wh_wx_b_c, CtildaBRAM);
 
 		//calculating Ot
 		mv_state(WhoBRAM, h_tmin1, mul_w_h);
 		mv_input(WxoBRAM, inputBRAM, mul_w_x);
-		ElemWiseVecAdd3(mul_w_h, mul_w_x, boBRAM, sum_wh_wx_b);
-		ElemWiseSigmoid(sum_wh_wx_b, OtBRAM);
+		ElemWiseVecAdd3(mul_w_h, mul_w_x, boBRAM, sum_wh_wx_b_o);
+		ElemWiseSigmoid(sum_wh_wx_b_o, OtBRAM);
 
 		//calculating C_t
 		ElemWiseVecMul(ftBRAM, C_tmin1, mul_ft_ctmin1);
