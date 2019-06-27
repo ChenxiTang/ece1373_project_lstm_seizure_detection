@@ -15,7 +15,7 @@
 #include "../ElemWiseVecAdd/ElemWiseVecAdd.h"
 #include "../ElemWiseVecMul/ElemWiseVecMul.h"
 
-typedef float dataType;
+//typedef float dataType;
 
 #define in 61440
 

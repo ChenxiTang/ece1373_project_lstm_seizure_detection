@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <cstdio>
 #include <fstream>
+#include "ap_fixed.h"
 #include <sstream>
 #include <string>
 #include <unistd.h>
@@ -14,7 +15,8 @@
 using namespace std;
 #include <cmath>
 
-typedef float dataType;
+//typedef float dataType;
+typedef ap_fixed<15,5,AP_RND_CONV,AP_SAT> dataType;
 
 int main(){
 
@@ -234,7 +236,7 @@ int main(){
     
     //printf("i: %d\n", i);
     
-    float* golden_output = (float*) malloc(sizeof(float)*n);
+    dataType* golden_output = (dataType*) malloc(sizeof(dataType)*n);
     
     i=0;
     inFile.open("predictions_series.txt");
@@ -256,8 +258,9 @@ int main(){
     //printf("compare %f:\n", golden_output[256]);
     ///*
     for (int i = size-n; i < size-n+200; i++){
-        if (fabs(golden_output[i-size+n] - input[i]) > 0.001)
-            printf("error %d %f %f\n", i-size+n, golden_output[i-size+n], input[i]);
+        //if ((golden_output[i-size+n] - input[i]) > (dataType)0.001 || (golden_output[i-size+n] - input[i]) < (dataType) (-0.001) )
+          if((golden_output[i-size+n] > (dataType)0.5 && input[i] < (dataType)0.5) || (golden_output[i-size+n] < (dataType)0.5 && input[i] > (dataType)0.5))
+    		printf("error %d %f %f\n", i-size+n, (float)(golden_output[i-size+n]), (float)(input[i]));
     }
     //*/
     return 0;

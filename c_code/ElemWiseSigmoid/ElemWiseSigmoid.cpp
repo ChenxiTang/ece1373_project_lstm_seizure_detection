@@ -29,7 +29,7 @@ void ElemWiseSigmoid(
 				else if(inputs[i] <= -4)
 					outputs[i] = 0;
 				else
-					outputs[i] = 0.25*inputs[i] + 0.5;
+					outputs[i] = (dataType)(0.25)*inputs[i] + (dataType)(0.5);
 	}
 }
 
@@ -39,5 +39,6 @@ void sigmoidSingle(dataType inputs, dataType & outputs){
 	else if(inputs <= -4)
 		outputs = 0;
 	else
-		outputs = 0.25*inputs + 0.5;
+		outputs = (dataType)(0.25)*inputs + (dataType)(0.5);
+		//outputs = 0000000000010000000000*inputs + 0000000000100000000000;
 }
