@@ -23,6 +23,8 @@ void ElemWiseVecMul(
 */
 	for(int i = 0; i < 64; i++){
 #pragma HLS UNROLL factor=32
-		outputs[i] = input1[i] * input2[i];
+		const dataType temp= input1[i] * input2[i];
+#pragma HLS RESOURCE variable=temp core=FMul_nodsp
+		outputs[i] = temp;
 		}
 }

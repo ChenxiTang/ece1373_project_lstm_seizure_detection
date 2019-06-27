@@ -28,8 +28,11 @@ void ElemWiseSigmoid(
 					outputs[i] = 1;
 				else if(inputs[i] <= -4)
 					outputs[i] = 0;
-				else
-					outputs[i] = 0.25*inputs[i] + 0.5;
+				else{
+					const dataType temp = 0.25*inputs[i] + 0.5;
+//#pragma HLS RESOURCE variable=temp core=FMul_nodsp
+					outputs[i] = temp;
+				}
 	}
 }
 
@@ -38,6 +41,9 @@ void sigmoidSingle(dataType inputs, dataType & outputs){
 		outputs = 1;
 	else if(inputs <= -4)
 		outputs = 0;
-	else
-		outputs = 0.25*inputs + 0.5;
+	else{
+		const dataType temp = 0.25*inputs + 0.5;
+#pragma HLS RESOURCE variable=temp core=FMul_nodsp
+		outputs = temp;
+	}
 }

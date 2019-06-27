@@ -50,26 +50,44 @@ void mv_input(
      }
 
 
-    for (int i = 0; i < 55; i++)
+    for (int i = 0; i < 55; i++){
         #pragma HLS UNROLL
-        add1[i] = mult[2*i] + mult[2*i+1];
-    for (int i = 0; i < 27; i++)
+    	const dataType temp = mult[2*i] + mult[2*i+1];
+//#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+        add1[i] = temp;
+    }
+    for (int i = 0; i < 27; i++){
         #pragma HLS UNROLL
-        add2[i] = add1[2*i] + add1[2*i+1];
+    	const dataType temp = add1[2*i] + add1[2*i+1];
+//#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+        add2[i] = temp;
+    }
     add2[27] = add1[54];
-    for (int i = 0; i < 14; i++)
+    for (int i = 0; i < 14; i++){
         #pragma HLS UNROLL
-        add3[i] = add2[2*i] + add2[2*i+1];
-    for (int i = 0; i < 7; i++)
+    	const dataType temp = add2[2*i] + add2[2*i+1];
+//#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+        add3[i] = temp;
+    }
+    for (int i = 0; i < 7; i++){
         #pragma HLS UNROLL
-        add4[i] = add3[2*i] + add3[2*i+1];
-    for (int i = 0; i < 3; i++)
+    	const dataType temp = add3[2*i] + add3[2*i+1];
+//#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+        add4[i] = temp;
+    }
+    for (int i = 0; i < 3; i++){
         #pragma HLS UNROLL
-        add5[i] = add4[2*i] + add4[2*i+1];
+    	const dataType temp = add4[2*i] + add4[2*i+1];
+//#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+        add5[i] = temp;
+    }
     add5[3] = add4[6];
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 2; i++){
         #pragma HLS UNROLL
-        add6[i] = add5[2*i] + add5[2*i+1];
+    	const dataType temp = add5[2*i] + add5[2*i+1];
+//#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+        add6[i] = temp;
+    }
     outputs[row] = add6[0] + add6[1];
      // Write output
     //outputs[row] = output_element;

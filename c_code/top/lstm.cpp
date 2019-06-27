@@ -117,31 +117,90 @@ void lstm(dataType * mem,            // global memory pointer
 
 	//Copy data for forget gate
 	memcpy(WhfBRAM, (const dataType*)(mem+temp_offset), 4096*sizeof(dataType));
+
+	/*
+	for (int i = 0; i < 4096; i++)
+		WhfBRAM[i] = mem[temp_offset+i];
+	*/
+
 	memcpy(WxfBRAM, (const dataType*)(mem+temp_offset+4096), 7040*sizeof(dataType));
+	/*
+	for (int i = 0; i < 7040; i++)
+		WxfBRAM[i] = mem[temp_offset+4096+i];
+	*/
+
 	memcpy(bfBRAM, (const dataType*)(mem+temp_offset+11136), 64*sizeof(dataType));
+	/*
+	for (int i = 0; i < 64; i++)
+		bfBRAM[i] = mem[temp_offset+11136+i];
+	*/
 
 	//cpy data for it gate
 	memcpy(WhiBRAM, (const dataType*)(mem+temp_offset+11200), 4096*sizeof(dataType));
+	/*
+	for (int i = 0; i < 4096; i++)
+		WhiBRAM[i] = mem[temp_offset+11200+i];
+	*/
 	memcpy(WxiBRAM, (const dataType*)(mem+temp_offset+15296), 7040*sizeof(dataType));
+	/*
+	for (int i = 0; i < 7040; i++)
+		WxiBRAM[i] = mem[temp_offset+15296+i];
+	*/
 	memcpy(biBRAM, (const dataType*)(mem+temp_offset+22336), 64*sizeof(dataType));
+	/*
+	for (int i = 0; i < 64; i++)
+		biBRAM[i] = mem[temp_offset+22336+i];
+	*/
 
 	//cpy data for Ctilda gate
 	memcpy(WhcBRAM, (const dataType*)(mem+temp_offset+22400), 4096*sizeof(dataType));
+	/*
+	for (int i = 0; i < 4096; i++)
+		WhcBRAM[i] = mem[temp_offset+22400+i];
+	*/
 	memcpy(WxcBRAM, (const dataType*)(mem+temp_offset+26496), 7040*sizeof(dataType));
+	/*
+	for (int i = 0; i < 7040; i++)
+		WxcBRAM[i] = mem[temp_offset+26496+i];
+	*/
 	memcpy(bcBRAM, (const dataType*)(mem+temp_offset+33536), 64*sizeof(dataType));
+	/*
+	for (int i = 0; i < 64; i++)
+		bcBRAM[i] = mem[temp_offset+33536+i];
+	*/
 
 	//cpy data for Ot gate
 	memcpy(WhoBRAM, (const dataType*)(mem+temp_offset+33600), 4096*sizeof(dataType));
+	/*
+	for (int i = 0; i < 4096; i++)
+		WhoBRAM[i] = mem[temp_offset+33600+i];
+	*/
 	memcpy(WxoBRAM, (const dataType*)(mem+temp_offset+37696), 7040*sizeof(dataType));
+	/*
+	for (int i = 0; i < 7040; i++)
+		WxoBRAM[i] = mem[temp_offset+37696+i];
+	*/
 	memcpy(boBRAM, (const dataType*)(mem+temp_offset+44736), 64*sizeof(dataType));
+	/*
+	for (int i = 0; i < 64; i++)
+		boBRAM[i] = mem[temp_offset+44736+i];
+	*/
 
 	memcpy(wgt_output, (const dataType*)(mem+temp_offset + 44800), 64*sizeof(dataType));
+	/*
+	for (int i = 0; i < 64; i++)
+		wgt_output[i] = mem[temp_offset+44800+i];
+	*/
 	bias_output = mem[temp_offset + 44864];
 
 
 	for(int i =0; i < in;i++){
 		//copy the input values to local BRAMs
 		memcpy(inputBRAM, (const dataType*) (mem+input_offset/sizeof(dataType))+ i*110, 110*sizeof(dataType));
+		/*
+		for (int j = 0; j < 110; j++)
+			inputBRAM[i] = mem[input_offset/sizeof(dataType)+ i*110 + j];
+		*/
 
 		//calculating f_t
 		mv_state(WhfBRAM, h_tmin1, mul_w_h);

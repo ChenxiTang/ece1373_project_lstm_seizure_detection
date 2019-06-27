@@ -43,21 +43,36 @@ for (int col = 0; col < 64; col++){
     mult[col] = input1[col]*input2[col];
 }
 
-    for (int i = 0; i < 32; i++)
+    for (int i = 0; i < 32; i++){
 #pragma HLS UNROLL
-        add1[i] = mult[2*i] + mult[2*i+1];
-    for (int i = 0; i < 16; i++)
+    	const dataType temp = mult[2*i] + mult[2*i+1];
+#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+        add1[i] = temp;
+    }
+    for (int i = 0; i < 16; i++){
 #pragma HLS UNROLL
-        add2[i] = add1[2*i] + add1[2*i+1];
-    for (int i = 0; i < 8; i++)
+    	const dataType temp = add1[2*i] + add1[2*i+1];
+#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+        add2[i] = temp;
+    }
+    for (int i = 0; i < 8; i++){
 #pragma HLS UNROLL
-        add3[i] = add2[2*i] + add2[2*i+1];
-    for (int i = 0; i < 4; i++)
+    	const dataType temp = add2[2*i] + add2[2*i+1];
+#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+        add3[i] = temp;
+    }
+    for (int i = 0; i < 4; i++){
 #pragma HLS UNROLL
-        add4[i] = add3[2*i] + add3[2*i+1];
-    for (int i = 0; i < 2; i++)
+    	const dataType temp = add3[2*i] + add3[2*i+1];
+#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+        add4[i] = temp;
+    }
+    for (int i = 0; i < 2; i++){
 #pragma HLS UNROLL
-        add5[i] = add4[2*i] + add4[2*i+1];
+    	const dataType temp = add4[2*i] + add4[2*i+1];
+#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+        add5[i] = temp;
+    }
     outputs = add5[0] + add5[1];
     /*
 	output_element += input1[col]*input2[col];
