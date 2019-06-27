@@ -5,7 +5,7 @@
 
 
 //typedef float dataType;
-typedef ap_fixed<15,5,AP_RND_CONV,AP_SAT> dataType;
+typedef ap_fixed<10,3,AP_RND_CONV,AP_SAT> dataType;
 
 void ElemWiseSigmoid(dataType [], dataType []);
 void sigmoidSingle(dataType, dataType &);
