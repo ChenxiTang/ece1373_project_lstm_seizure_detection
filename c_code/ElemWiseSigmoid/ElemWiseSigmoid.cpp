@@ -13,11 +13,11 @@ void ElemWiseSigmoid(dataType * mem,            // global memory pointer
 		){
 
 	// Global memory interface
-	#pragma HLS INTERFACE m_axi port=mem depth=2147483648
+	//#pragma HLS INTERFACE m_axi port=mem depth=2147483648
 	// Bind all control ports to a single bundle
-	#pragma HLS INTERFACE s_axilite port=input_offset
-	#pragma HLS INTERFACE s_axilite port=output_offset
-	#pragma HLS INTERFACE s_axilite port=return bundle=CTRL_BUS
+	//#pragma HLS INTERFACE s_axilite port=input_offset
+	//#pragma HLS INTERFACE s_axilite port=output_offset
+	//#pragma HLS INTERFACE s_axilite port=return bundle=CTRL_BUS
 
 			for(int i = 0; i < 64; i++){
 				//out[i] = in[i]/(1+abs(in[i]));
@@ -38,11 +38,11 @@ void ElemWiseSigmoid_single(dataType * mem,            // global memory pointer
 ){
     
     // Global memory interface
-#pragma HLS INTERFACE m_axi port=mem depth=2147483648
+//#pragma HLS INTERFACE m_axi port=mem depth=2147483648
     // Bind all control ports to a single bundle
-#pragma HLS INTERFACE s_axilite port=input_offset
-#pragma HLS INTERFACE s_axilite port=output_offset
-#pragma HLS INTERFACE s_axilite port=return bundle=CTRL_BUS
+//#pragma HLS INTERFACE s_axilite port=input_offset
+//#pragma HLS INTERFACE s_axilite port=output_offset
+//#pragma HLS INTERFACE s_axilite port=return bundle=CTRL_BUS
     	//printf("jere\n");
         //out[i] = in[i]/(1+abs(in[i]));
         
