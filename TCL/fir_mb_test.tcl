@@ -303,11 +303,6 @@ CONFIG.C0.DDR4_isCustom {true} \
   # Create instance: fir_top_0, and set properties
   set fir_top_0 [ create_bd_cell -type ip -vlnv xilinx.com:hls:fir_top:1.0 fir_top_0 ]
 
-  set_property -dict [ list \
-CONFIG.NUM_READ_OUTSTANDING {1} \
-CONFIG.NUM_WRITE_OUTSTANDING {1} \
- ] [get_bd_intf_pins /fir_top_0/s_axi_CTRL_BUS]
-
   # Create instance: lstm_0, and set properties
   set lstm_0 [ create_bd_cell -type ip -vlnv xilinx.com:hls:lstm:1.0 lstm_0 ]
 
@@ -322,6 +317,7 @@ CONFIG.NUM_WRITE_OUTSTANDING {1} \
   # Create instance: microblaze_0, and set properties
   set microblaze_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:10.0 microblaze_0 ]
   set_property -dict [ list \
+CONFIG.C_AREA_OPTIMIZED {2} \
 CONFIG.C_BASE_VECTORS {0x10000000} \
 CONFIG.C_CACHE_BYTE_SIZE {65536} \
 CONFIG.C_DCACHE_BYTE_SIZE {65536} \
