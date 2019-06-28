@@ -1,5 +1,5 @@
 INFO: [HLS 200-10] Running '/opt/Xilinx/Vivado_HLS/2017.2/bin/unwrapped/lnx64.o/vivado_hls'
-INFO: [HLS 200-10] For user 'koernerja' on host 'ece1373-a2-cont1.lxd' (Linux_x86_64 version 4.4.0-119-generic) on Thu Jun 27 20:42:05 UTC 2019
+INFO: [HLS 200-10] For user 'koernerja' on host 'ece1373-a2-cont1.lxd' (Linux_x86_64 version 4.4.0-119-generic) on Fri Jun 28 03:01:36 UTC 2019
 INFO: [HLS 200-10] On os Ubuntu 16.04.3 LTS
 INFO: [HLS 200-10] In directory '/home/koernerja/Desktop/ece1373_project_seizure/hls_proj'
 INFO: [HLS 200-10] Opening project '/home/koernerja/Desktop/ece1373_project_seizure/hls_proj/lstm_proj'.
@@ -8,7 +8,7 @@ INFO: [SYN 201-201] Setting up clock 'default' with a period of 4ns.
 INFO: [HLS 200-10] Setting target device to 'xcvu095-ffvc1517-2-e'
 INFO: [SIM 211-2] *************** CSIM start ***************
 INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
-   Compiling ../../../../../c_code/matrix_vector_mult/mv_input.cpp in debug mode
+   Compiling ../../../../../c_code/matrix_vector_mult/mv_output.cpp in debug mode
    Generating csim.exe
 here
 error 130 0.525119 0.524069

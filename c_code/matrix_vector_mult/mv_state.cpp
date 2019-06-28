@@ -10,14 +10,7 @@ void mv_state(
 ){
 
 // Global memory interface
-	/*
-#pragma HLS INTERFACE m_axi port=mem depth=2147483648
-// Bind all control ports to a single bundle
-#pragma HLS INTERFACE s_axilite port=input1_offset
-#pragma HLS INTERFACE s_axilite port=input2_offset
-#pragma HLS INTERFACE s_axilite port=output_offset
-#pragma HLS INTERFACE s_axilite port=return bundle=CTRL_BUS
- */
+
     dataType mult[64];
 #pragma HLS ARRAY_PARTITION variable=mult complete dim=1
     dataType add1[32];
@@ -49,46 +42,35 @@ void mv_state(
      for (int i = 0; i < 32; i++){
         #pragma HLS UNROLL
     	 const dataType temp = mult[2*i] + mult[2*i+1];
-//#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
          add1[i] = temp;
      }
      for (int i = 0; i < 16; i++){
         #pragma HLS UNROLL
     	 const dataType temp = add1[2*i] + add1[2*i+1];
-//#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
          add2[i] = temp;
      }
      for (int i = 0; i < 8; i++){
         #pragma HLS UNROLL
     	 const dataType temp = add2[2*i] + add2[2*i+1];
-//#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
          add3[i] = temp;
      }
      for (int i = 0; i < 4; i++){
         #pragma HLS UNROLL
     	 const dataType temp = add3[2*i] + add3[2*i+1];
-//#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
          add4[i] = temp;
      }
      for (int i = 0; i < 2; i++){
         #pragma HLS UNROLL
     	 const dataType temp = add4[2*i] + add4[2*i+1];
-//#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
+#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
          add5[i] = temp;
      }
      outputs[row] = add5[0] + add5[1];
 
-     // Write output
-     //outputs[row] = output_element;
-
-
-     /*
-
-     output_element += input1[row*64 + col]*input2[col];
-     }
-     // Write output
-    outputs[row] = output_element;
-      */
   }
 }
 

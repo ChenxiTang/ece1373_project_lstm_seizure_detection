@@ -51,8 +51,10 @@ void ElemWiseVecAdd3(
 
 		for(int i = 0; i < 64; i++){
 #pragma HLS UNROLL factor=32
-			const dataType temp = input1[i] + input2[i] + input3[i];
-#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
-			outputs[i] = temp;
+			const dataType temp1 = input1[i] + input2[i];
+#pragma HLS RESOURCE variable=temp1 core=FAddSub_nodsp
+			const dataType temp2 = temp1 + input3[i];
+#pragma HLS RESOURCE variable=temp2 core=FAddSub_nodsp
+			outputs[i] = temp2;
 	}
 }
