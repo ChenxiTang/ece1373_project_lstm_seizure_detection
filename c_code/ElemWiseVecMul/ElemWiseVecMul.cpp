@@ -22,7 +22,8 @@ void ElemWiseVecMul(
 	#pragma HLS INTERFACE s_axilite port=return bundle=CTRL_BUS
 */
 	for(int i = 0; i < 64; i++){
-#pragma HLS UNROLL factor=32
+//#pragma HLS UNROLL factor=32
+#pragma HLS UNROLL
 		outputs[i] = input1[i] * input2[i];
 		}
 }

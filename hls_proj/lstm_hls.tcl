@@ -34,7 +34,7 @@ add_files ../data/tensorflow_data/x_test_se.txt
 add_files ../data/tensorflow_data/predictions_series.txt
 add_files ../data/tensorflow_data/states_series.txt
 add_files ../data/tensorflow_data/logits_series.txt
-
+add_files -tb ../c_code/top/lstm_test.cpp -cflags "-I .  -std=c++0x"
 open_solution "solution1"
 set_part {xcvu095-ffvc1517-2-e} -tool vivado
 create_clock -period 250MHz -name default

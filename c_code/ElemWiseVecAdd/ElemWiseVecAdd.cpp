@@ -23,7 +23,8 @@ void ElemWiseVecAdd(
 */
 	//dataType temp;
 		for(int i = 0; i < 64; i++){
-#pragma HLS UNROLL factor=32
+//#pragma HLS UNROLL factor=32
+#pragma HLS UNROLL
 //#pragma HLS RESOURCE variable=temp core=FAddSub_nodsp
 			 //temp=  input1[i] + input2[i];
 			//outputs[i] = temp;
@@ -50,7 +51,8 @@ void ElemWiseVecAdd3(
 */
 
 		for(int i = 0; i < 64; i++){
-#pragma HLS UNROLL factor=32
+//#pragma HLS UNROLL factor=32
+#pragma HLS UNROLL
 			outputs[i] = input1[i] + input2[i] + input3[i];
 	}
 }
