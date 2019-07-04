@@ -38,7 +38,6 @@ int main(){
     int bo = 64;
     int W_output = 64;
     int b_output = 1;
-    /*
     int C_tmin1 = 64;
     int h_tmin1 = 64;
     int f_t = 64;
@@ -64,10 +63,9 @@ int main(){
     int tanh_ct = 64;
     int mul_W_ht = 64;
     int sum_Wht_bias = 64;
-    */
     int output = n;
 
-    int size = x+Wf_h+Wf_x+bf+Wi_h+Wi_x+bi+Wc_h+Wc_x+bc+Wo_h+Wo_x+bo+W_output+b_output+output;
+int size = x+Wf_h+Wf_x+bf+Wi_h+Wi_x+bi+Wc_h+Wc_x+bc+Wo_h+Wo_x+bo+W_output+b_output+C_tmin1+h_tmin1+f_t+i_t+C_tilda+C_t+O_t+h_t+mul_wf_h+mul_wf_x+sum_wfh_wfx_bf+mul_wi_h+mul_wi_x+sum_wih_wix_bi+mul_wc_h+mul_wc_x+sum_wch_wcx_bc+mul_wo_h+mul_wo_x+sum_woh_wox_bo+mul_ft_ctmin1+mul_it_ctilda+tanh_ct+mul_W_ht+sum_Wht_bias+output;
 
     //printf("size %d\n", size);
     dataType* input = (dataType*) malloc(size*sizeof(dataType));
