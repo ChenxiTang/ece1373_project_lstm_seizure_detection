@@ -1,0 +1,8 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/tangche/test/IP_REPO/new_PCIe_status/ip_repo/PCIE_Status_2.0/hdl/PCIE_Status_v2_0_S00_AXI.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PCIE_Status_v2_0_S00_AXI
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/tangche/test/IP_REPO/new_PCIe_status/ip_repo/PCIE_Status_2.0/src/dff.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module dff
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/tangche/test/IP_REPO/new_PCIe_status/ip_repo/PCIE_Status_2.0/hdl/PCIE_Status_v2_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PCIE_Status_v2_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/tangche/test/IP_REPO/new_PCIe_status/managed_ip_project/managed_ip_project.tmp/PCIE_Status_v2_0_v2_0_project/PCIE_Status_v2_0_v2_0_project.sim/sim_1/behav/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
