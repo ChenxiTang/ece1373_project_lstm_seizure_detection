@@ -1,0 +1,10 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  "../../../../../../ip_repo/PCIE_Status_2.0/hdl/PCIE_Status_v2_0_S00_AXI.v"
+verilog xil_defaultlib  "../../../../../../ip_repo/PCIE_Status_2.0/src/dff.v"
+verilog xil_defaultlib  "../../../../../../ip_repo/PCIE_Status_2.0/hdl/PCIE_Status_v2_0.v"
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
