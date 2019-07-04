@@ -10,13 +10,6 @@ set_property  ip_repo_paths  {IP_REPO/ocl_ips\
 IP_REPO/pcie_status\
 IP_REPO/new_PCIe_status\
 hls_proj/LSTM_proj/solution1/impl/ip\
-hls_proj/ElemWiseSigmoid_proj/solution1/impl/ip\
-hls_proj/ElemWiseTanh_proj/solution1/impl/ip\
-hls_proj/ElemWiseVecAdd_proj/solution1/impl/ip\
-hls_proj/ElemWiseVecMul_proj/solution1/impl/ip\
-hls_proj/mv_input_proj/solution1/impl/ip\
-hls_proj/mv_output_proj/solution1/impl/ip\
-hls_proj/mv_state_proj/solution1/impl/ip\
 hls_proj/FIR_top_proj/solution1/impl/ip} [current_project]
 
 add_files -fileset constrs_1 -norecurse { \
