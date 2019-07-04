@@ -1,33 +1,47 @@
 # ece1373_project_seizure
-cd data: Put all raw data, weights and other relevant data in this 
-directory
+Author:
+Mohamed Adel, Chenxi Tang, Jamie, Koerner
 
-cd c_code: Put all source c codes in this folder, make a new directory 
-for different IP
+Directory Descriptions:
 
-cd hls_prj: If you have tcls script that could automatically rebuild all 
-the IP, put them in there. If not, jut leave it empty as it is right now
+data: All raw test data and final test data
+
+c_code: All synthesisable C codes and software testbenches for different IPs
+
+hls_prj: tcl scripts for Vivado HLS
+
+TCL: tcl scripts to reconstruct this project
+
+hw_code: source codes for hardware test program and SDK source files
+
+support: board constraint files
+
+IP_REPO: custom IPs, not genereated with Vivado HLS
 
 
-NOTE ON GENERATING HW FOR SINGLE IP TEST	
+NOTE ON GENERATING HW (THIS PROJECT WAS MADE WITHIN LINUX ENVIRONMENT, IT MAY NOT RUN WITH A WINDOWS OS)
 
-clone the repo and make sure your working directory is ~/ece1373_project_seizure/
+clone the repo and make sure your working directory is the same as the path to this readme file. Change Vivado and SDK paths in sourceme.sh file as necessary. 
 
 In the terminal:
 
 source sourceme.sh
 
-make ip_test
+make prj
 
-If there is no bug, you should be able to see the block design opened. Add your IP to IP repo path and replace dummy with your test IP. Change offset address to a 
-low value (0x00010000 for example). Click generate bit stream. 
+These two commands will synthesis HLS IPs and build Vivado block design. The systhesis and implementation settings will also be imported. When GUI is open,
+open the block design to see connections and IPs used. Click Generate Bitstream to run through the Vivado design. When the operations are completed, launch
+Xilinx SDK by
 
-When generation is finished, you may see warnings about timing issues. It will be improved for the final design. If WNS<-1ns, it may be safe to ignore for now. 
+source TCL/sdk.tcl
 
-Open Hardware Manager and program the board. 
+This will create a new directory named hw.sdk in your working directory. Creat a C application in SDK and copy all files in hw_code/sdc_src into your application
+project. Complie, program the FPGA, and launch a debug session to run the MicroBlaze progam. After this, 
 
-After the board is programmed, compile your testbench and use the following command to make sure that the host PC knows where PCIe device is
+make hw_test
+
+This will generate Linux test program and driver to test the hardware. Use the following commands to run the test. 
 
 make rescan
 
-After this you can run your test program.
+./hw_test
