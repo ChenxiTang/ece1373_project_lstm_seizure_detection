@@ -1,17 +1,27 @@
 # ece1373_project_seizure
-cd data: Put all raw data, weights and other relevant data in this 
-directory
+Author:
+Mohamed Adel, Chenxi Tang, Jamie, Koerner
 
-cd c_code: Put all source c codes in this folder, make a new directory 
-for different IP
+Directory Descriptions:
 
-cd hls_prj: If you have tcls script that could automatically rebuild all 
-the IP, put them in there. If not, jut leave it empty as it is right now
+data: All raw test data and final test data
+
+c_code: All synthesisable C codes and software testbenches for different IPs
+
+hls_prj: tcl scripts for Vivado HLS
+
+TCL: tcl scripts to reconstruct this project
+
+hw_code: source codes for hardware test program and SDK source files
+
+support: board constraint files
+
+IP_REPO: custom IPs, not genereated with Vivado HLS
 
 
-NOTE ON RECONSTRUCTING THE PROJECT (in Linux environment) 
+NOTE ON GENERATING HW (THIS PROJECT WAS MADE WITHIN LINUX ENVIRONMENT, IT MAY NOT RUN WITH A WINDOWS OS)
 
-clone the repo and make sure your working directory is ~/ece1373_project_seizure
+clone the repo and make sure your working directory is the same as the path to this readme file. Change Vivado and SDK paths in sourceme.sh file as necessary. 
 
 In the terminal:
 
@@ -19,8 +29,19 @@ source sourceme.sh
 
 make prj
 
-These two commands will generate project directories, HLS projects and export IPs, and Vivado block designs containing MB processor, PCIe-AXI bridge, DDR4 MIG that addresses 2GB of memory, an FIR compiler, and seven dummy blocks to be replaced with HLS projects. After everything is set up, the GUI will open. 
+These two commands will synthesis HLS IPs and build Vivado block design. The systhesis and implementation settings will also be imported. When GUI is open,
+open the block design to see connections and IPs used. Click Generate Bitstream to run through the Vivado design. When the operations are completed, launch
+Xilinx SDK by
 
-More to be added:
+source TCL/sdk.tcl
 
-*Current issues: PCIe-AXI Bridge Gen3 driver is not provided by Xilinx, we may not be able to use MB processor if we use PCIe-DMA bridge in Endpoint configuration, Ultrascale does not support PCIe-DMA bridge in root complex configuration (needed for MB processor control) 
+This will create a new directory named hw.sdk in your working directory. Creat a C application in SDK and copy all files in hw_code/sdc_src into your application
+project. Complie, program the FPGA, and launch a debug session to run the MicroBlaze progam. After this, 
+
+make hw_test
+
+This will generate Linux test program and driver to test the hardware. Use the following commands to run the test. 
+
+make rescan
+
+./hw_test

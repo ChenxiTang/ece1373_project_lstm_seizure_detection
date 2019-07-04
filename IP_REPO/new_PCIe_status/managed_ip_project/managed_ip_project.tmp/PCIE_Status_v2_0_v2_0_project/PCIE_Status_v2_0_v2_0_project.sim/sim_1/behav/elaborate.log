@@ -1,0 +1,15 @@
+Vivado Simulator 2017.2
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: /opt/Xilinx/Vivado/2017.2/bin/unwrapped/lnx64.o/xelab -wto b2fd7c94d4894f02b4ed71b34f805f65 --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot PCIE_Status_v2_0_behav xil_defaultlib.PCIE_Status_v2_0 xil_defaultlib.glbl -log elaborate.log 
+Using 8 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4099] "/home/tangche/test/IP_REPO/new_PCIe_status/ip_repo/PCIE_Status_2.0/src/dff.v" Line 6. Module dff doesn't have a timescale but at least one module in design has a timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.dff
+Compiling module xil_defaultlib.PCIE_Status_v2_0_S00_AXI(C_S_AXI...
+Compiling module xil_defaultlib.PCIE_Status_v2_0
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot PCIE_Status_v2_0_behav
